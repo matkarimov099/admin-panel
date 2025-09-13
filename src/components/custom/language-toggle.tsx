@@ -21,23 +21,20 @@ const languageOptions = [
 	{
 		code: 'uz' as Locale,
 		name: "O'zbekcha",
-		description: 'Uzbek language',
+		description: "O'zbek tili",
 		flag: uzFlag,
-		gradient: 'from-blue-500 to-cyan-500',
 	},
 	{
 		code: 'ru' as Locale,
 		name: 'Русский',
-		description: 'Russian language',
+		description: 'Русский язык',
 		flag: ruFlag,
-		gradient: 'from-red-500 to-blue-500',
 	},
 	{
 		code: 'en' as Locale,
 		name: 'English',
 		description: 'English language',
 		flag: enFlag,
-		gradient: 'from-red-500 to-blue-600',
 	},
 ];
 
@@ -64,7 +61,7 @@ export function LanguageToggle() {
 					<Button
 						variant="ghost"
 						size="sm"
-						className="group relative mr-2 h-9 w-9 overflow-hidden ios-bg-card p-0 ios-backdrop-blur ios-transition hover:border-[var(--system-blue)]/30 hover:ios-bg-control-ghost"
+						className="group relative mr-2 h-9 w-9 overflow-hidden ios-bg-card p-0 ios-backdrop-blur ios-transition"
 					>
 						<div className="relative flex h-full w-full items-center justify-center">
 							{/* Flag or Globe icon */}
@@ -72,7 +69,7 @@ export function LanguageToggle() {
 								<img
 									src={currentLanguage.flag}
 									alt={currentLanguage.name}
-									className="h-6 w-6 rounded-sm transition-all duration-300 group-hover:scale-110"
+									className="h-6 w-6 transition-all duration-300 group-hover:scale-110"
 								/>
 							) : (
 								<GlobeIcon className="h-6 w-6 transition-all duration-300 group-hover:scale-110" />
@@ -82,9 +79,6 @@ export function LanguageToggle() {
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end" className="w-64">
-					<div className="ios-border/50 border-b px-3 py-2 font-medium ios-text-secondary ios-text-xs ios-font">
-						Language Settings
-					</div>
 					{languageOptions.map(option => {
 						const isSelected = locale === option.code;
 
@@ -93,16 +87,16 @@ export function LanguageToggle() {
 								key={option.code}
 								onClick={() => handleLanguageChange(option.code)}
 								className={cn(
-									'group relative mx-1 my-0.5 flex cursor-pointer items-center gap-3 rounded-[var(--radius-sm)] px-3 py-3',
+									'group relative mx-1 my-0.5 flex cursor-pointer items-center gap-3 px-3 py-3',
 									isSelected && 'bg-[var(--system-blue)]/10 ios-text-blue'
 								)}
 							>
 								<div className="flex flex-1 items-center gap-3">
-									<div className="bder relative flex h-8 w-8 items-center justify-center overflow-hidden ios-rounded-lg ios-border ios-bg-card">
+									<div className="relative flex items-center justify-center overflow-hidden">
 										<img
 											src={option.flag}
 											alt={option.name}
-											className="relative z-10 h-6 w-6 rounded-sm"
+											className="relative z-10 h-7 w-7"
 										/>
 									</div>
 									<div className="flex flex-col">

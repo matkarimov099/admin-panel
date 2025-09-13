@@ -155,7 +155,7 @@ export function DataTableToolbar<TData>({
 							{t('dataTable.settings')}
 						</Button>
 					</PopoverTrigger>
-					<PopoverContent align="end" className="w-64">
+					<PopoverContent align="end" className="w-fit">
 						<div className="grid gap-4">
 							<div className="space-y-2">
 								<h4 className="font-medium leading-none">{t('dataTable.tableSettings')}</h4>

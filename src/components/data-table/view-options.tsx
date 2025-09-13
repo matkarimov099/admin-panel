@@ -175,7 +175,7 @@ export function DataTableViewOptions<TData>({
 					{t('dataTable.view')}
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent align="end" className="w-[220px] p-0">
+			<PopoverContent align="end" className="w-fit p-0">
 				<Command className="bg-transparent">
 					<CommandInput placeholder={t('dataTable.searchColumns')} />
 					<CommandList>

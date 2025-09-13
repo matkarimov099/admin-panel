@@ -323,18 +323,18 @@ export function DataTableExport<TData>({
 					</>
 				) : (
 					<>
-						<DropdownMenuItem onClick={() => handleExport('csv')} disabled={isLoading}>
+						<DropdownMenuItem className="px-2" onClick={() => handleExport('csv')} disabled={isLoading}>
 							{t('dataTable.exportCurrentPageCSV')}
 						</DropdownMenuItem>
-						<DropdownMenuItem onClick={() => handleExport('excel')} disabled={isLoading}>
+						<DropdownMenuItem className="px-2" onClick={() => handleExport('excel')} disabled={isLoading}>
 							{t('dataTable.exportCurrentPageExcel')}
 						</DropdownMenuItem>
 						{getAllItems && (
 							<>
-								<DropdownMenuItem onClick={() => exportAllPages('csv')} disabled={isLoading}>
+								<DropdownMenuItem className="px-2" onClick={() => exportAllPages('csv')} disabled={isLoading}>
 									{t('dataTable.exportAllPagesCSV')}
 								</DropdownMenuItem>
-								<DropdownMenuItem onClick={() => exportAllPages('excel')} disabled={isLoading}>
+								<DropdownMenuItem className="px-2" onClick={() => exportAllPages('excel')} disabled={isLoading}>
 									{t('dataTable.exportAllPagesExcel')}
 								</DropdownMenuItem>
 							</>

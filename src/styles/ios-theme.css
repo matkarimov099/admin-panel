@@ -266,18 +266,6 @@
 		--tw-ring-color: color-mix(in srgb, var(--ring) 12%, transparent) !important;
 	}
 
-	/* Hover lift / generic effects */
-	.hover-lift {
-		transition: transform var(--motion-short) var(--motion-ease), box-shadow var(--motion-medium)
-			var(--motion-ease);
-	}
-	.hover-lift:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-sm);
-	}
-	.dark .hover-lift:hover {
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-	}
 }
 
 /* ============================
@@ -413,22 +401,6 @@
 		outline: none;
 	}
 
-	/* ---------- iOS Hover Effects ---------- */
-	.ios-hover-lift {
-		transition: transform var(--motion-short) var(--motion-ease), box-shadow var(--motion-medium)
-			var(--motion-ease);
-	}
-	.ios-hover-lift:hover {
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-md);
-	}
-
-	.ios-hover-scale {
-		transition: transform var(--motion-short) var(--motion-ease);
-	}
-	.ios-hover-scale:hover {
-		transform: scale(1.02);
-	}
 
 	.ios-active-press {
 		transition: transform var(--motion-short) var(--motion-ease);
@@ -467,15 +439,50 @@
 
 	/* ---------- iOS Interactive States ---------- */
 	.ios-interactive {
-		transition: all var(--motion-short) var(--motion-ease);
+		transition: opacity var(--motion-short) var(--motion-ease);
+		cursor: pointer;
 	}
 	.ios-interactive:hover {
-		transform: translateY(-1px);
-		box-shadow: var(--shadow-md);
+		opacity: 0.75;
 	}
 	.ios-interactive:active {
 		transform: scale(0.98);
 		transition-duration: 75ms;
+		opacity: 0.6;
+	}
+
+	/* ---------- iOS Hover Effects ---------- */
+	.ios-hover-fade {
+		transition: opacity var(--motion-short) var(--motion-ease);
+		cursor: pointer;
+	}
+	.ios-hover-fade:hover {
+		opacity: 0.65;
+	}
+
+	.ios-hover-dim {
+		transition: opacity var(--motion-short) var(--motion-ease);
+		cursor: pointer;
+	}
+	.ios-hover-dim:hover {
+		opacity: 0.75;
+	}
+
+	.ios-hover-ghost {
+		transition: opacity var(--motion-short) var(--motion-ease);
+		cursor: pointer;
+		opacity: 0.8;
+	}
+	.ios-hover-ghost:hover {
+		opacity: 1;
+	}
+
+	.ios-hover-subtle {
+		transition: opacity var(--motion-short) var(--motion-ease);
+		cursor: pointer;
+	}
+	.ios-hover-subtle:hover {
+		opacity: 0.85;
 	}
 
 	/* ---------- iOS Focus States ---------- */
@@ -679,12 +686,16 @@
 @layer utilities {
 	/* Enhanced button press animation */
 	.ios-button-press {
-		transition: all var(--motion-short) var(--motion-ease);
+		transition: opacity var(--motion-short) var(--motion-ease);
+		cursor: pointer;
 	}
-
+	.ios-button-press:hover {
+		opacity: 0.8;
+	}
 	.ios-button-press:active {
 		transform: scale(0.98) translateY(1px);
 		transition-duration: 75ms;
+		opacity: 0.65;
 	}
 
 	/* Loading state pulse animation */
@@ -702,86 +713,74 @@
 		animation: ios-pulse 1.5s cubic-bezier(0.2, 0.9, 0.25, 1) infinite;
 	}
 
-	/* Smooth lift animation for buttons */
-	@keyframes ios-lift {
-		0% {
-			transform: translateY(0) scale(1);
-		}
-		100% {
-			transform: translateY(-2px) scale(1.02);
-		}
-	}
-
-	.ios-lift-hover:hover {
-		animation: ios-lift 120ms cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
-	}
 
 	/* Button ripple effect (optimized) */
 	.ios-ripple {
 		position: relative;
 		overflow: hidden;
+		transition: opacity var(--motion-short) var(--motion-ease);
+		cursor: pointer;
 	}
-
+	.ios-ripple:hover {
+		opacity: 0.75;
+	}
 	.ios-ripple:active {
 		transform: scale(0.98);
 		transition: transform 0.1s cubic-bezier(0.2, 0.9, 0.25, 1);
+		opacity: 0.6;
 	}
 
 	/* iOS-style page transitions */
 	.ios-page-enter {
 		opacity: 0;
-		transform: translateY(12px) scale(0.98);
 	}
 
 	.ios-page-enter-active {
 		opacity: 1;
-		transform: translateY(0) scale(1);
-		transition: opacity 280ms cubic-bezier(0.2, 0.9, 0.25, 1), transform 280ms
-			cubic-bezier(0.2, 0.9, 0.25, 1);
+		transition: opacity var(--motion-medium) var(--motion-ease);
 	}
 
 	.ios-page-exit {
 		opacity: 1;
-		transform: translateY(0) scale(1);
 	}
 
 	.ios-page-exit-active {
 		opacity: 0;
-		transform: translateY(-8px) scale(1.02);
-		transition: opacity 200ms cubic-bezier(0.2, 0.9, 0.25, 1), transform 200ms
-			cubic-bezier(0.2, 0.9, 0.25, 1);
+		transition: opacity var(--motion-short) var(--motion-ease);
 	}
 
 	/* iOS-style modal transitions */
 	.ios-modal-enter {
 		opacity: 0;
-		transform: scale(0.96) translateY(8px);
 	}
 
 	.ios-modal-enter-active {
 		opacity: 1;
-		transform: scale(1) translateY(0);
-		transition: opacity 300ms cubic-bezier(0.2, 0.9, 0.25, 1), transform 300ms
-			cubic-bezier(0.2, 0.9, 0.25, 1);
+		transition: opacity var(--motion-medium) var(--motion-ease);
 	}
 
 	.ios-modal-exit {
 		opacity: 1;
-		transform: scale(1) translateY(0);
 	}
 
 	.ios-modal-exit-active {
 		opacity: 0;
-		transform: scale(0.98) translateY(-4px);
-		transition: opacity 200ms cubic-bezier(0.2, 0.9, 0.25, 1), transform 200ms
-			cubic-bezier(0.2, 0.9, 0.25, 1);
+		transition: opacity var(--motion-short) var(--motion-ease);
 	}
 
 	/* iOS-style sidebar transitions (optimized) */
 	.ios-sidebar-expand,
 	.ios-sidebar-collapse {
-		transition: width 300ms cubic-bezier(0.2, 0.9, 0.25, 1), opacity 200ms
-			cubic-bezier(0.2, 0.9, 0.25, 1);
+		transition: width 200ms cubic-bezier(0.2, 0.9, 0.25, 1);
+	}
+
+	/* Sidebar hover states */
+	.ios-sidebar-item {
+		transition: opacity var(--motion-short) var(--motion-ease);
+		cursor: pointer;
+	}
+	.ios-sidebar-item:hover {
+		opacity: 0.7;
 	}
 }
 

@@ -31,8 +31,7 @@ export const DefaultLayout = () => {
 							{/* Left section */}
 							<div className="flex items-center gap-3 px-4">
 								<div className="flex items-center gap-3">
-									<SidebarTrigger className="group relative h-8 w-8 p-0 ios-rounded-lg ios-bg-card hover:ios-bg-control-ghost hover:border-[var(--system-blue)]/30 ios-transition" />
-									<div className="hidden sm:block w-px h-5 ios-border/30" />
+									<SidebarTrigger className="relative h-8 w-8 p-0 cursor-pointer" />
 								</div>
 
 								<Breadcrumb className="hidden md:flex">

@@ -14,14 +14,18 @@
 		scroll-behavior: auto !important;
 	}
 
-	/* Remove specific iOS animations when reduced motion is preferred */
-	.hover\:-translate-y-0\.5:hover {
-		transform: none !important;
+	/* Preserve opacity transitions for hover states */
+	.ios-hover-fade,
+	.ios-hover-dim,
+	.ios-hover-ghost,
+	.ios-hover-subtle,
+	.ios-interactive,
+	.ios-button-press,
+	.ios-ripple,
+	.ios-sidebar-item {
+		transition-duration: 75ms !important;
 	}
 
-	.hover\:scale-\[1\.02\]:hover {
-		transform: none !important;
-	}
 
 	.active\:translate-y-0:active {
 		transform: none !important;
@@ -43,7 +47,6 @@
 	/* Simplify focus transitions */
 	.focus\:shadow-\[0_0_0_6px_color-mix\(in_srgb\,var\(--ring\)_10\%\,transparent\)\]:focus {
 		box-shadow: 0 0 0 2px var(--ring) !important;
-		transition: none !important;
 	}
 
 	/* Remove backdrop filter animations */
@@ -51,10 +54,6 @@
 		backdrop-filter: none !important;
 	}
 
-	/* Simplify hover effects */
-	.hover\:shadow-\[var\(--shadow-md\)\]:hover {
-		box-shadow: var(--shadow-sm) !important;
-	}
 }
 
 /* Utility classes for reduced motion */

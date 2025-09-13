@@ -12,26 +12,23 @@ import { CheckIcon, MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
 const themeOptions = [
 	{
 		value: 'light',
-		label: 'Light',
-		description: 'Clean and bright',
+		label: "Yorug'",
+		description: 'Toza va yorqin',
 		icon: SunIcon,
-		gradient: 'from-amber-400 to-orange-600',
 		iconColor: 'text-amber-800 dark:text-amber-400',
 	},
 	{
 		value: 'dark',
-		label: 'Dark',
-		description: 'Easy on your eyes',
+		label: "Qorong'i",
+		description: "Ko'zga qulay",
 		icon: MoonIcon,
-		gradient: 'from-slate-600 to-slate-800',
 		iconColor: 'text-slate-600 dark:text-slate-400',
 	},
 	{
 		value: 'system',
-		label: 'System',
-		description: 'Adapts to your OS',
+		label: 'Tizim',
+		description: 'Qurilmaga moslashadi',
 		icon: MonitorIcon,
-		gradient: 'from-blue-500 to-cyan-500',
 		iconColor: 'text-blue-600 dark:text-blue-400',
 	},
 ];
@@ -66,9 +63,6 @@ export function ModeToggle() {
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end" className="w-64">
-					<div className="ios-border/50 border-b px-3 py-2 font-medium ios-text-secondary ios-text-xs ios-font">
-						Appearance Settings
-					</div>
 					{themeOptions.map(option => {
 						const Icon = option.icon;
 						const isSelected = theme === option.value;
@@ -83,15 +77,9 @@ export function ModeToggle() {
 								)}
 							>
 								<div className="flex flex-1 items-center gap-3">
-									<div className="relative flex h-8 w-8 items-center justify-center overflow-hidden ios-rounded-lg ios-border ios-bg-card">
+									<div className="relative flex items-center justify-center overflow-hidden">
 										{/* Theme preview background */}
-										<div
-											className={cn(
-												'absolute inset-0 bg-gradient-to-br opacity-20',
-												option.gradient
-											)}
-										/>
-										<Icon className={cn('relative z-10 h-6 w-6', option.iconColor)} />
+										<Icon className={cn('relative !h-5 !w-5', option.iconColor)} />
 									</div>
 									<div className="flex flex-col">
 										<span className="font-medium text-sm">{option.label}</span>
