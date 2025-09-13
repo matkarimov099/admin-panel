@@ -1,0 +1,144 @@
+{
+	"common": {
+		"loading": "Загрузка...",
+		"error": "Ошибка",
+		"success": "Успех",
+		"cancel": "Отмена",
+		"save": "Сохранить",
+		"edit": "Редактировать",
+		"delete": "Удалить",
+		"search": "Поиск",
+		"filter": "Фильтр",
+		"export": "Экспорт",
+		"import": "Импорт",
+		"back": "Назад",
+		"next": "Далее",
+		"previous": "Предыдущий",
+		"submit": "Отправить",
+		"reset": "Сбросить",
+		"close": "Закрыть",
+		"tryAgain": "Попробовать снова",
+		"goBack": "Вернуться назад",
+		"home": "Главная"
+	},
+	"navigation": {
+		"menu": "МЕНЮ",
+		"dashboard": "Панель управления",
+		"reports": "Отчеты",
+		"users": "Пользователи",
+		"calendar": "Календарь",
+		"documents": "Документы",
+		"settings": "Настройки",
+		"help": "Помощь",
+		"projects": "Проекты",
+		"ecommerce": "Электронная коммерция",
+		"social": "Социальное приложение",
+		"security": "Приложение безопасности",
+		"theme_demo": "Демо темы",
+		"logout": "Выйти",
+		"profile": "Профиль",
+		"account": "Аккаунт",
+		"billing": "Биллинг",
+		"home": "Главная страница",
+		"notifications": "Уведомления",
+		"upgrade": "Обновить до Pro"
+	},
+	"pages": {
+		"reports": {
+			"title": "Отчеты",
+			"description": "Просматривайте и создавайте отчеты здесь."
+		},
+		"calendar": {
+			"title": "Календарь",
+			"description": "Просматривайте и управляйте событиями и расписаниями."
+		},
+		"documents": {
+			"title": "Документы",
+			"description": "Просматривайте и управляйте своими документами."
+		},
+		"settings": {
+			"title": "Настройки",
+			"description": "Настройте параметры приложения."
+		},
+		"help": {
+			"title": "Помощь и поддержка",
+			"description": "Получите помощь и поддержку по использованию приложения."
+		},
+		"projects": {
+			"ecommerce": {
+				"title": "Проект электронной коммерции",
+				"description": "Просматривайте и управляйте деталями проекта электронной коммерции."
+			},
+			"social": {
+				"title": "Проект социального приложения",
+				"description": "Просматривайте и управляйте деталями проекта социального приложения."
+			},
+			"security": {
+				"title": "Проект приложения безопасности",
+				"description": "Просматривайте и управляйте деталями проекта приложения безопасности."
+			}
+		}
+	},
+	"errors": {
+		"notFound": "Страница не найдена",
+		"notFoundDescription": "Страница, которую вы ищете, не существует.",
+		"noAccess": "Доступ запрещен",
+		"noAccessDescription": "У вас нет разрешения на доступ к этой странице.",
+		"goHome": "Перейти на главную",
+		"tryAgain": "Попробовать снова",
+		"somethingWentWrong": "Что-то пошло не так",
+		"errorDescription": "Произошла неожиданная ошибка. Пожалуйста, попробуйте еще раз или вернитесь позже.",
+		"persistentError": "Если проблема не исчезает, обратитесь в техническую поддержку."
+	},
+	"dataTable": {
+		"search": "Поиск...",
+		"searchPlaceholder": "Поиск...",
+		"reset": "Сбросить",
+		"clearSearch": "Очистить поиск",
+		"settings": "Настройки",
+		"tableSettings": "Настройки таблицы",
+		"tableSettingsDescription": "Настройте внешний вид и поведение таблицы",
+		"resetColumnSizes": "Сбросить размеры столбцов",
+		"resetColumnOrder": "Сбросить порядок столбцов",
+		"view": "Вид",
+		"searchColumns": "Поиск столбцов...",
+		"noColumnsFound": "Столбцы не найдены.",
+		"resetColumnOrderAction": "Сбросить порядок столбцов",
+		"export": "Экспорт",
+		"exporting": "Экспортируется...",
+		"exportSelected": "Экспорт выбранных",
+		"exportSelectedCSV": "Экспорт выбранных в CSV",
+		"exportSelectedExcel": "Экспорт выбранных в XLS",
+		"exportCurrentPageCSV": "Экспорт текущей страницы в CSV",
+		"exportCurrentPageExcel": "Экспорт текущей страницы в XLS",
+		"exportAllPagesCSV": "Экспорт всех страниц в CSV",
+		"exportAllPagesExcel": "Экспорт всех страниц в XLS",
+		"pagination": {
+			"rowsPerPage": "Строк на странице",
+			"page": "Страница",
+			"of": "из",
+			"goToFirstPage": "Перейти на первую страницу",
+			"goToPreviousPage": "Перейти на предыдущую страницу",
+			"goToNextPage": "Перейти на следующую страницу",
+			"goToLastPage": "Перейти на последнюю страницу",
+			"rowsSelected": "из {total} строк(и) выбрано"
+		},
+		"noResults": "Нет результатов.",
+		"loading": "Загрузка...",
+		"toast": {
+			"preparingExport": "Подготовка экспорта...",
+			"fetchingData": "Получение полных данных для выбранных {entity}.",
+			"fetchingAllData": "Получение всех {entity}...",
+			"processingData": "Обработка данных...",
+			"generatingFile": "Создание файла экспорта...",
+			"exportSuccess": "Экспорт успешен",
+			"exportSuccessDescription": "Экспортировано {count} {entity} в {format}.",
+			"exportAllSuccess": "Экспортированы все {count} {entity} в {format}.",
+			"exportFailed": "Ошибка экспорта",
+			"exportFailedDescription": "Возникла проблема при экспорте. Попробуйте еще раз.",
+			"noDataToExport": "Нет данных для экспорта.",
+			"failedToRetrieveData": "Не удалось получить полные данные для выбранных {entity}",
+			"noDataAvailable": "Нет доступных {entity} для экспорта"
+		}
+	}
+}
