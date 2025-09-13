@@ -39,18 +39,17 @@ export function NavUser({ user, logout }: NavUserProps) {
 							<SidebarMenuButton
 								size={isCollapsed ? 'sm' : 'lg'}
 								className={cn(
-									'group relative transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.25,1)]',
-									'rounded-lg border border-[var(--border)]/60 bg-[var(--card-bg)]',
-									'hover:border-[var(--system-blue)]/30 hover:bg-[var(--control-ghost-bg)] hover:shadow-md',
+									'group cursor-pointer relative transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.25,1)]',
+									'hover:border-[var(--system-blue)]/30 hover:shadow-md',
 									'data-[state=open]:border-[var(--system-blue)]/40 data-[state=open]:bg-[var(--control-ghost-bg)]',
-									isCollapsed && 'h-8 w-8 justify-center p-0'
+									isCollapsed && 'h-9 w-9 justify-center p-0'
 								)}
 							>
 								<div className="relative">
 									<Avatar
 										className={cn(
-											'rounded-full border border-[var(--border)]/30 transition-all duration-200',
-											isCollapsed ? 'h-8 w-8' : 'h-8 w-8'
+											'h-9 w-9 rounded-lg border border-[var(--border)]/30 transition-all duration-200',
+											isCollapsed && 'h-8 w-8'
 										)}
 									>
 										<AvatarFallback
@@ -88,7 +87,7 @@ export function NavUser({ user, logout }: NavUserProps) {
 						>
 							<DropdownMenuLabel className="p-0 font-normal">
 								<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-									<Avatar className="h-8 w-8 rounded-full">
+									<Avatar className="h-8 w-8 rounded-lg">
 										<AvatarImage src={user?.firstname} alt={user?.lastname} />
 										<AvatarFallback className="rounded-lg">
 											{`${user?.firstname?.[0] ?? ''}${user?.lastname?.[0] ?? ''}`.toUpperCase()}

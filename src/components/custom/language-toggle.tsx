@@ -61,7 +61,7 @@ export function LanguageToggle() {
 					<Button
 						variant="ghost"
 						size="sm"
-						className="group relative mr-2 h-9 w-9 overflow-hidden ios-bg-card p-0 ios-backdrop-blur ios-transition"
+						className="group relative mr-2 h-9 w-9 overflow-hidden p-0 ios-transition"
 					>
 						<div className="relative flex h-full w-full items-center justify-center">
 							{/* Flag or Globe icon */}
