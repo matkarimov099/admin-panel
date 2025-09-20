@@ -1,7 +1,7 @@
+import { enUS, ru } from 'date-fns/locale';
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import * as React from 'react';
 import { type DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker';
-import { enUS, ru } from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
 
 // Custom Uzbek locale
@@ -11,16 +11,26 @@ const uz = {
 		...enUS.localize,
 		month: (monthIndex: number) => {
 			const months = [
-				'Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun',
-				'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'
+				'Yanvar',
+				'Fevral',
+				'Mart',
+				'Aprel',
+				'May',
+				'Iyun',
+				'Iyul',
+				'Avgust',
+				'Sentabr',
+				'Oktabr',
+				'Noyabr',
+				'Dekabr',
 			];
 			return months[monthIndex];
 		},
 		day: (dayIndex: number) => {
 			const days = ['Yak', 'Du', 'Se', 'Cho', 'Pay', 'Jum', 'Sha'];
 			return days[dayIndex];
-		}
-	}
+		},
+	},
 };
 
 import { Button } from '@/components/ui/button';
@@ -74,8 +84,18 @@ function Calendar({
 				formatMonthDropdown: date => {
 					if (i18n.language === 'uz') {
 						const months = [
-							'Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun',
-							'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'
+							'Yan',
+							'Fev',
+							'Mar',
+							'Apr',
+							'May',
+							'Iyun',
+							'Iyul',
+							'Avg',
+							'Sen',
+							'Okt',
+							'Noy',
+							'Dek',
 						];
 						return months[date.getMonth()];
 					}
@@ -84,10 +104,7 @@ function Calendar({
 				...formatters,
 			}}
 			classNames={{
-				root: cn(
-					size === 'full' ? 'w-full' : 'w-fit',
-					defaultClassNames.root
-				),
+				root: cn(size === 'full' ? 'w-full' : 'w-fit', defaultClassNames.root),
 				months: cn('flex gap-4 flex-col md:flex-row relative', defaultClassNames.months),
 				month: cn('flex flex-col w-full gap-4', defaultClassNames.month),
 				nav: cn(

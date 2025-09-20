@@ -27,10 +27,7 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/utils/utils';
 
-
-
-interface CalendarDatePickerProps
-	extends React.HTMLAttributes<HTMLButtonElement> {
+interface CalendarDatePickerProps extends React.HTMLAttributes<HTMLButtonElement> {
 	id?: string;
 	className?: string;
 	date: DateRange;
@@ -40,7 +37,7 @@ interface CalendarDatePickerProps
 	onDateSelect: (range: { from: Date | undefined; to: Date | undefined }) => void;
 	placeholder?: string;
 	allowClear?: boolean;
-	variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+	variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
 }
 
 export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDatePickerProps>(
@@ -53,7 +50,7 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 			numberOfMonths = 2,
 			yearsRange = 10,
 			onDateSelect,
-			variant = "outline",
+			variant = 'outline',
 			placeholder,
 			allowClear = true,
 			...props
@@ -84,20 +81,23 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 			[yearsRange, today]
 		);
 
-		const months = React.useMemo(() => [
-			t('calendar.months.january', 'January'),
-			t('calendar.months.february', 'February'),
-			t('calendar.months.march', 'March'),
-			t('calendar.months.april', 'April'),
-			t('calendar.months.may', 'May'),
-			t('calendar.months.june', 'June'),
-			t('calendar.months.july', 'July'),
-			t('calendar.months.august', 'August'),
-			t('calendar.months.september', 'September'),
-			t('calendar.months.october', 'October'),
-			t('calendar.months.november', 'November'),
-			t('calendar.months.december', 'December'),
-		], [t]);
+		const months = React.useMemo(
+			() => [
+				t('calendar.months.january', 'January'),
+				t('calendar.months.february', 'February'),
+				t('calendar.months.march', 'March'),
+				t('calendar.months.april', 'April'),
+				t('calendar.months.may', 'May'),
+				t('calendar.months.june', 'June'),
+				t('calendar.months.july', 'July'),
+				t('calendar.months.august', 'August'),
+				t('calendar.months.september', 'September'),
+				t('calendar.months.october', 'October'),
+				t('calendar.months.november', 'November'),
+				t('calendar.months.december', 'December'),
+			],
+			[t]
+		);
 
 		const handleClose = () => setIsPopoverOpen(false);
 
@@ -236,37 +236,52 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 			[years, monthFrom, numberOfMonths, timeZone, onDateSelect, monthTo, date.from, date.to]
 		);
 
-		const dateRanges = React.useMemo(() => [
-			{ label: t('calendar.ranges.today', 'Today'), start: today, end: today },
-			{ label: t('calendar.ranges.yesterday', 'Yesterday'), start: subDays(today, 1), end: subDays(today, 1) },
-			{
-				label: t('calendar.ranges.thisWeek', 'This Week'),
-				start: startOfWeek(today, { weekStartsOn: 1 }),
-				end: endOfWeek(today, { weekStartsOn: 1 }),
-			},
-			{
-				label: t('calendar.ranges.lastWeek', 'Last Week'),
-				start: subDays(startOfWeek(today, { weekStartsOn: 1 }), 7),
-				end: subDays(endOfWeek(today, { weekStartsOn: 1 }), 7),
-			},
-			{ label: t('calendar.ranges.last7Days', 'Last 7 Days'), start: subDays(today, 6), end: today },
-			{
-				label: t('calendar.ranges.thisMonth', 'This Month'),
-				start: startOfMonth(today),
-				end: endOfMonth(today),
-			},
-			{
-				label: t('calendar.ranges.lastMonth', 'Last Month'),
-				start: startOfMonth(subDays(today, today.getDate())),
-				end: endOfMonth(subDays(today, today.getDate())),
-			},
-			{ label: t('calendar.ranges.thisYear', 'This Year'), start: startOfYear(today), end: endOfYear(today) },
-			{
-				label: t('calendar.ranges.lastYear', 'Last Year'),
-				start: startOfYear(subDays(today, 365)),
-				end: endOfYear(subDays(today, 365)),
-			},
-		], [t, today]);
+		const dateRanges = React.useMemo(
+			() => [
+				{ label: t('calendar.ranges.today', 'Today'), start: today, end: today },
+				{
+					label: t('calendar.ranges.yesterday', 'Yesterday'),
+					start: subDays(today, 1),
+					end: subDays(today, 1),
+				},
+				{
+					label: t('calendar.ranges.thisWeek', 'This Week'),
+					start: startOfWeek(today, { weekStartsOn: 1 }),
+					end: endOfWeek(today, { weekStartsOn: 1 }),
+				},
+				{
+					label: t('calendar.ranges.lastWeek', 'Last Week'),
+					start: subDays(startOfWeek(today, { weekStartsOn: 1 }), 7),
+					end: subDays(endOfWeek(today, { weekStartsOn: 1 }), 7),
+				},
+				{
+					label: t('calendar.ranges.last7Days', 'Last 7 Days'),
+					start: subDays(today, 6),
+					end: today,
+				},
+				{
+					label: t('calendar.ranges.thisMonth', 'This Month'),
+					start: startOfMonth(today),
+					end: endOfMonth(today),
+				},
+				{
+					label: t('calendar.ranges.lastMonth', 'Last Month'),
+					start: startOfMonth(subDays(today, today.getDate())),
+					end: endOfMonth(subDays(today, today.getDate())),
+				},
+				{
+					label: t('calendar.ranges.thisYear', 'This Year'),
+					start: startOfYear(today),
+					end: endOfYear(today),
+				},
+				{
+					label: t('calendar.ranges.lastYear', 'Last Year'),
+					start: startOfYear(subDays(today, 365)),
+					end: endOfYear(subDays(today, 365)),
+				},
+			],
+			[t, today]
+		);
 
 		const handleMouseOver = (part: string) => {
 			setHighlightedPart(part);
@@ -373,29 +388,71 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 			// Only depend on id and handleWheel to avoid unnecessary reruns
 		}, [handleWheel, id]);
 
-		const formatWithTz = React.useCallback((date: Date, fmt: string) => {
-		// Custom formatting for different locales
-		if (fmt === 'dd') {
-			return date.getDate().toString().padStart(2, '0');
-		}
+		const formatWithTz = React.useCallback(
+			(date: Date, fmt: string) => {
+				// Custom formatting for different locales
+				if (fmt === 'dd') {
+					return date.getDate().toString().padStart(2, '0');
+				}
 
-		if (fmt === 'LLL') {
-			const monthNames = {
-				en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-				ru: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-				uz: ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek']
-			};
-			const currentLang = i18n.language as keyof typeof monthNames;
-			const months = monthNames[currentLang] || monthNames.en;
-			return months[date.getMonth()];
-		}
+				if (fmt === 'LLL') {
+					const monthNames = {
+						en: [
+							'Jan',
+							'Feb',
+							'Mar',
+							'Apr',
+							'May',
+							'Jun',
+							'Jul',
+							'Aug',
+							'Sep',
+							'Oct',
+							'Nov',
+							'Dec',
+						],
+						ru: [
+							'Янв',
+							'Фев',
+							'Мар',
+							'Апр',
+							'Май',
+							'Июн',
+							'Июл',
+							'Авг',
+							'Сен',
+							'Окт',
+							'Ноя',
+							'Дек',
+						],
+						uz: [
+							'Yan',
+							'Fev',
+							'Mar',
+							'Apr',
+							'May',
+							'Iyun',
+							'Iyul',
+							'Avg',
+							'Sen',
+							'Okt',
+							'Noy',
+							'Dek',
+						],
+					};
+					const currentLang = i18n.language as keyof typeof monthNames;
+					const months = monthNames[currentLang] || monthNames.en;
+					return months[date.getMonth()];
+				}
 
-		if (fmt === 'y') {
-			return date.getFullYear().toString();
-		}
+				if (fmt === 'y') {
+					return date.getFullYear().toString();
+				}
 
-		return formatInTimeZone(date, timeZone, fmt);
-	}, [timeZone, i18n.language]);
+				return formatInTimeZone(date, timeZone, fmt);
+			},
+			[timeZone, i18n.language]
+		);
 
 		return (
 			<>
@@ -412,7 +469,7 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 							id="date"
 							ref={ref}
 							{...props}
-                            variant={variant}
+							variant={variant}
 							className={cn('w-auto justify-start text-left font-normal relative pr-8', className)}
 							size="default"
 							onClick={handleTogglePopover}
@@ -613,7 +670,12 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 									</div>
 								)}
 								<div className="flex flex-col flex-1">
-									<div className={cn('flex items-center gap-4 mb-4', numberOfMonths === 1 ? 'justify-center' : '')}>
+									<div
+										className={cn(
+											'flex items-center gap-4 mb-4',
+											numberOfMonths === 1 ? 'justify-center' : ''
+										)}
+									>
 										<div className="flex gap-2">
 											<Select
 												onValueChange={value => {

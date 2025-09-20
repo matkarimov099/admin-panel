@@ -4,10 +4,10 @@ import { useState } from 'react';
 import type { DateRange } from 'react-day-picker';
 import { useTranslation } from 'react-i18next';
 
+import { CalendarDatePicker } from '@/components/custom/calendar-date-picker.tsx';
+import { DatePicker } from '@/components/custom/date-picker.tsx';
 import { AddUser } from '@/features/users/components/actions/AddUser.tsx';
 import { BulkDeleteUser } from '@/features/users/components/actions/BulkDeleteUser.tsx';
-import {CalendarDatePicker} from "@/components/custom/calendar-date-picker.tsx";
-import {DatePicker} from "@/components/custom/date-picker.tsx";
 
 interface ToolbarOptionsProps {
 	// Current page selected users with name data
@@ -29,7 +29,7 @@ const ToolbarOptions = ({
 	const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 	const [dateRange, setDateRange] = useState<DateRange>({
 		from: undefined,
-		to: undefined
+		to: undefined,
 	});
 	const [singleDate, setSingleDate] = useState<Date | undefined>(new Date());
 
@@ -48,7 +48,7 @@ const ToolbarOptions = ({
 				<div className="grid grid-cols-1 gap-2">
 					<CalendarDatePicker
 						date={dateRange}
-						onDateSelect={(range) => {
+						onDateSelect={range => {
 							console.log('Selected date range:', range);
 							if (range.from && range.to) {
 								setDateRange(range as DateRange);
@@ -63,7 +63,7 @@ const ToolbarOptions = ({
 					/>
 					<DatePicker
 						date={singleDate}
-						onDateSelect={(date) => {
+						onDateSelect={date => {
 							console.log('Selected single date:', date);
 							setSingleDate(date);
 						}}
@@ -91,7 +91,7 @@ const ToolbarOptions = ({
 					<AddUser />
 					<CalendarDatePicker
 						date={dateRange}
-						onDateSelect={(range) => {
+						onDateSelect={range => {
 							console.log('Selected date range:', range);
 							if (range.from && range.to) {
 								setDateRange(range as DateRange);
@@ -105,7 +105,7 @@ const ToolbarOptions = ({
 					/>
 					<DatePicker
 						date={singleDate}
-						onDateSelect={(date) => {
+						onDateSelect={date => {
 							console.log('Selected single date:', date);
 							setSingleDate(date);
 						}}
@@ -114,11 +114,7 @@ const ToolbarOptions = ({
 					/>
 				</div>
 				{selectionCount > 0 && (
-					<Button
-						variant="outline"
-						size="default"
-						onClick={() => setDeleteDialogOpen(true)}
-					>
+					<Button variant="outline" size="default" onClick={() => setDeleteDialogOpen(true)}>
 						<TrashIcon className="mr-2 size-4" aria-hidden="true" />
 						Delete ({selectionCount})
 					</Button>

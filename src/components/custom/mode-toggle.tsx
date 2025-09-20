@@ -10,7 +10,6 @@ import { cn } from '@/utils/utils';
 import { CheckIcon, MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-
 export function ModeToggle() {
 	const { theme, setTheme } = useTheme();
 	const { t } = useTranslation();

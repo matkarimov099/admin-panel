@@ -15,9 +15,7 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/utils/utils';
 
-
-interface DatePickerProps
-	extends React.HTMLAttributes<HTMLButtonElement> {
+interface DatePickerProps extends React.HTMLAttributes<HTMLButtonElement> {
 	className?: string;
 	date?: Date;
 	closeOnSelect?: boolean;
@@ -26,7 +24,7 @@ interface DatePickerProps
 	placeholder?: string;
 	disabled?: boolean;
 	allowClear?: boolean;
-    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+	variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
 }
 
 export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
@@ -37,7 +35,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
 			closeOnSelect = true,
 			yearsRange = 10,
 			onDateSelect,
-			variant="outline",
+			variant = 'outline',
 			placeholder,
 			disabled = false,
 			allowClear = true,
@@ -47,9 +45,7 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
 	) => {
 		const { t, i18n } = useTranslation();
 		const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
-		const [selectedMonth, setSelectedMonth] = React.useState<Date | undefined>(
-			date || new Date()
-		);
+		const [selectedMonth, setSelectedMonth] = React.useState<Date | undefined>(date || new Date());
 		const [selectedYear, setSelectedYear] = React.useState<number | undefined>(
 			date?.getFullYear() || new Date().getFullYear()
 		);
@@ -63,20 +59,23 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
 			[yearsRange, today]
 		);
 
-		const months = React.useMemo(() => [
-			t('calendar.months.january', 'January'),
-			t('calendar.months.february', 'February'),
-			t('calendar.months.march', 'March'),
-			t('calendar.months.april', 'April'),
-			t('calendar.months.may', 'May'),
-			t('calendar.months.june', 'June'),
-			t('calendar.months.july', 'July'),
-			t('calendar.months.august', 'August'),
-			t('calendar.months.september', 'September'),
-			t('calendar.months.october', 'October'),
-			t('calendar.months.november', 'November'),
-			t('calendar.months.december', 'December'),
-		], [t]);
+		const months = React.useMemo(
+			() => [
+				t('calendar.months.january', 'January'),
+				t('calendar.months.february', 'February'),
+				t('calendar.months.march', 'March'),
+				t('calendar.months.april', 'April'),
+				t('calendar.months.may', 'May'),
+				t('calendar.months.june', 'June'),
+				t('calendar.months.july', 'July'),
+				t('calendar.months.august', 'August'),
+				t('calendar.months.september', 'September'),
+				t('calendar.months.october', 'October'),
+				t('calendar.months.november', 'November'),
+				t('calendar.months.december', 'December'),
+			],
+			[t]
+		);
 
 		const handleClose = () => setIsPopoverOpen(false);
 
@@ -126,29 +125,71 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
 			[years, selectedMonth]
 		);
 
-		const formatWithTz = React.useCallback((date: Date, fmt: string) => {
-			// Custom formatting for different locales
-			if (fmt === 'dd') {
-				return date.getDate().toString().padStart(2, '0');
-			}
+		const formatWithTz = React.useCallback(
+			(date: Date, fmt: string) => {
+				// Custom formatting for different locales
+				if (fmt === 'dd') {
+					return date.getDate().toString().padStart(2, '0');
+				}
 
-			if (fmt === 'LLL') {
-				const monthNames = {
-					en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-					ru: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-					uz: ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun', 'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek']
-				};
-				const currentLang = i18n.language as keyof typeof monthNames;
-				const months = monthNames[currentLang] || monthNames.en;
-				return months[date.getMonth()];
-			}
+				if (fmt === 'LLL') {
+					const monthNames = {
+						en: [
+							'Jan',
+							'Feb',
+							'Mar',
+							'Apr',
+							'May',
+							'Jun',
+							'Jul',
+							'Aug',
+							'Sep',
+							'Oct',
+							'Nov',
+							'Dec',
+						],
+						ru: [
+							'Янв',
+							'Фев',
+							'Мар',
+							'Апр',
+							'Май',
+							'Июн',
+							'Июл',
+							'Авг',
+							'Сен',
+							'Окт',
+							'Ноя',
+							'Дек',
+						],
+						uz: [
+							'Yan',
+							'Fev',
+							'Mar',
+							'Apr',
+							'May',
+							'Iyun',
+							'Iyul',
+							'Avg',
+							'Sen',
+							'Okt',
+							'Noy',
+							'Dek',
+						],
+					};
+					const currentLang = i18n.language as keyof typeof monthNames;
+					const months = monthNames[currentLang] || monthNames.en;
+					return months[date.getMonth()];
+				}
 
-			if (fmt === 'y') {
-				return date.getFullYear().toString();
-			}
+				if (fmt === 'y') {
+					return date.getFullYear().toString();
+				}
 
-			return formatInTimeZone(date, timeZone, fmt);
-		}, [timeZone, i18n.language]);
+				return formatInTimeZone(date, timeZone, fmt);
+			},
+			[timeZone, i18n.language]
+		);
 
 		return (
 			<>
@@ -179,16 +220,9 @@ export const DatePicker = React.forwardRef<HTMLButtonElement, DatePickerProps>(
 							<span className="flex-1">
 								{date ? (
 									<>
-										<span className="date-part">
-											{formatWithTz(date, 'dd')}
-										</span>{' '}
-										<span className="date-part">
-											{formatWithTz(date, 'LLL')}
-										</span>
-										,{' '}
-										<span className="date-part">
-											{formatWithTz(date, 'y')}
-										</span>
+										<span className="date-part">{formatWithTz(date, 'dd')}</span>{' '}
+										<span className="date-part">{formatWithTz(date, 'LLL')}</span>,{' '}
+										<span className="date-part">{formatWithTz(date, 'y')}</span>
 									</>
 								) : (
 									<span>{placeholder || t('calendar.selectDate', 'Select a date')}</span>
