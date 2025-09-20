@@ -88,12 +88,12 @@ function FormLabel({ className, required, children, ...props }: FormLabelProps) 
 		<Label
 			data-slot="form-label"
 			data-error={!!error}
-			className={cn('data-[error=true]:ios-text-red', className)}
+			className={cn('data-[error=true]:text-red', className)}
 			htmlFor={formItemId}
 			{...props}
 		>
 			{children}
-			{required && <span className="ios-text-red">*</span>}
+			{required && <span className="text-red">*</span>}
 		</Label>
 	);
 }
@@ -119,7 +119,7 @@ function FormDescription({ className, ...props }: React.ComponentProps<'p'>) {
 		<p
 			data-slot="form-description"
 			id={formDescriptionId}
-			className={cn('ios-text-secondary ios-text-sm ios-font', className)}
+			className={cn('text-secondary text-sm font', className)}
 			{...props}
 		/>
 	);
@@ -137,7 +137,7 @@ function FormMessage({ className, ...props }: React.ComponentProps<'p'>) {
 		<p
 			data-slot="form-message"
 			id={formMessageId}
-			className={cn('font-medium ios-text-red ios-text-sm ios-font', className)}
+			className={cn('font-medium text-red text-sm font', className)}
 			{...props}
 		>
 			{body}

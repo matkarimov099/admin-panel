@@ -231,7 +231,7 @@ function Sidebar({
 						'bg-sidebar text-sidebar-foreground',
 						'border-sidebar-border',
 						'group-data-[variant=floating]:rounded-xl group-data-[variant=floating]:border group-data-[variant=floating]:shadow-lg',
-						// Enhanced iOS-specific styling
+						// Enhanced styling
 						'backdrop-blur-xl backdrop-saturate-150',
 						'group-data-[side=left]:border-r group-data-[side=right]:border-l',
 						// Add subtle shadow for depth
@@ -469,14 +469,14 @@ function SidebarMenuItem({ className, ...props }: ComponentProps<'li'>) {
 }
 
 const sidebarMenuButtonVariants = cva(
-	'peer/menu-button flex w-full items-center gap-2 overflow-hidden p-2 text-left text-sm outline-hidden transition-all duration-200 ease-[cubic-bezier(0.2,0.9,0.25,1)] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:justify-center! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+	'peer/menu-button flex w-full items-center gap-2 overflow-hidden p-2 text-left text-sm outline-hidden transition-all duration-200 ease-[cubic-bezier(0.2,0.9,0.25,1)] disabled:pointer-events-none disabled:text-muted-foreground group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:text-muted-foreground group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:justify-center! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
 	{
 		variants: {
 			variant: {
 				default:
-					'rounded-md hover:bg-[color-mix(in_srgb,var(--sidebar-bg)_88%,var(--background)_12%)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--system-blue)] data-[active=true]:bg-[var(--system-blue)] data-[active=true]:text-white data-[active=true]:font-medium data-[active=true]:shadow-sm data-[state=open]:hover:bg-[color-mix(in_srgb,var(--sidebar-bg)_88%,var(--background)_12%)]',
+					'rounded-md hover:bg-[color-mix(in_srgb,var(--sidebar-bg)_85%,var(--background)_15%)] hover:text-[var(--sidebar-accent-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--system-blue)] data-[active=true]:bg-[var(--system-blue)] data-[active=true]:text-white data-[active=true]:font-medium data-[active=true]:shadow-sm data-[state=open]:hover:bg-[color-mix(in_srgb,var(--sidebar-bg)_85%,var(--background)_15%)]',
 				outline:
-					'bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-[color-mix(in_srgb,var(--sidebar-bg)_88%,var(--background)_12%)] hover:shadow-[0_0_0_1px_hsl(var(--system-blue))] rounded-md',
+					'bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-[color-mix(in_srgb,var(--sidebar-bg)_85%,var(--background)_15%)] hover:shadow-[0_0_0_1px_hsl(var(--system-blue))] hover:text-[var(--sidebar-accent-foreground)] rounded-md',
 			},
 			size: {
 				default: 'h-8 text-sm',
@@ -554,7 +554,7 @@ function SidebarMenuAction({
 			data-slot="sidebar-menu-action"
 			data-sidebar="menu-action"
 			className={cn(
-				'text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
+				'text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 outline-hidden transition-all duration-200 focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
 				// Increases the hit area of the button on mobile.
 				'after:absolute after:-inset-2 md:after:hidden',
 				'peer-data-[size=sm]/menu-button:top-1',
@@ -562,7 +562,7 @@ function SidebarMenuAction({
 				'peer-data-[size=lg]/menu-button:top-2.5',
 				'group-data-[collapsible=icon]:hidden',
 				showOnHover &&
-					'peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0',
+					'peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:bg-sidebar-accent group-focus-within/menu-item:text-sidebar-accent-foreground group-hover/menu-item:bg-sidebar-accent group-hover/menu-item:text-sidebar-accent-foreground data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground md:bg-transparent md:text-muted-foreground',
 				className
 			)}
 			{...props}
@@ -665,11 +665,11 @@ function SidebarMenuSubButton({
 			data-sidebar="menu-sub-button"
 			data-size={size}
 			className={cn(
-				'text-sidebar-foreground flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden transition-all duration-200 ease-out disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
-				'hover:bg-[color-mix(in_srgb,var(--sidebar-bg)_88%,var(--background)_12%)]',
+				'text-sidebar-foreground flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 outline-hidden transition-all duration-200 ease-out disabled:pointer-events-none disabled:text-muted-foreground aria-disabled:pointer-events-none aria-disabled:text-muted-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0',
+				'hover:bg-[color-mix(in_srgb,var(--sidebar-bg)_85%,var(--background)_15%)] hover:text-[var(--sidebar-accent-foreground)]',
 				'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--system-blue)]',
 				'data-[active=true]:bg-[var(--system-blue)] data-[active=true]:text-white data-[active=true]:font-medium',
-				'[&>svg]:text-sidebar-foreground data-[active=true]:[&>svg]:text-white',
+				'[&>svg]:text-sidebar-foreground data-[active=true]:[&>svg]:text-white hover:[&>svg]:text-[var(--sidebar-accent-foreground)]',
 				size === 'sm' && 'text-xs',
 				size === 'md' && 'text-sm',
 				'group-data-[collapsible=icon]:hidden',

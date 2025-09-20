@@ -1,42 +1,43 @@
 import { cva } from 'class-variance-authority';
 
 const buttonVariants = cva(
-	'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 ios-font ios-transition-fast ios-backdrop-blur ios-active-press ios-interactive',
+	'inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 font-sans transition-all duration-[120ms] ease-[cubic-bezier(0.2,0.9,0.25,1)] backdrop-blur-[10px] saturate-150 active:scale-[0.98]',
 	{
 		variants: {
 			variant: {
-				// iOS Primary (Blue)
+				// Primary (Blue) - using Tailwind classes with CSS custom properties for theme consistency
 				default:
-					'ios-bg-blue ios-text-white ios-shadow-sm ios-border hover:ios-hover-lift focus-visible:ios-ring',
+					'bg-blue-500 text-white shadow-sm border border-border hover:bg-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
 				primary:
-					'ios-bg-blue ios-text-white ios-shadow-sm ios-border hover:ios-hover-lift focus-visible:ios-ring',
+					'bg-blue-500 text-white shadow-sm border border-border hover:bg-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
 
-				// iOS Secondary (Green)
+				// Secondary (Green)
 				secondary:
-					'ios-bg-green ios-text-white ios-shadow-sm ios-border hover:ios-hover-lift focus-visible:ios-ring',
+					'bg-green-600 text-white shadow-sm border border-border hover:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2',
 				success:
-					'ios-bg-green ios-text-white ios-shadow-sm ios-border hover:ios-hover-lift focus-visible:ios-ring',
+					'bg-green-600 text-white shadow-sm border border-border hover:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2',
 
-				// iOS Destructive (Red)
+				// Destructive (Red)
 				destructive:
-					'ios-bg-red ios-text-white ios-shadow-sm ios-border hover:ios-hover-lift focus-visible:ios-ring',
+					'bg-red-500 text-white shadow-sm border border-border hover:bg-red-600 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2',
 
-				// iOS Outline/Ghost
+				// Outline/Ghost
 				outline:
-					'ios-bg-card ios-text-primary ios-border hover:ios-bg-control-ghost hover:ios-shadow-sm hover:ios-hover-lift focus-visible:ios-ring',
-				ghost: 'bg-transparent ios-text-primary hover:ios-bg-control-ghost focus-visible:ios-ring',
+					'bg-card text-foreground border border-border hover:bg-[color-mix(in_srgb,var(--system-blue)_8%,transparent)] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+				ghost:
+					'bg-transparent text-foreground hover:bg-[color-mix(in_srgb,var(--system-blue)_8%,transparent)] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
 
-				// iOS Link
-				link: 'ios-text-blue underline-offset-4 hover:underline focus-visible:ios-ring',
+				// Link
+				link: 'text-blue-500 underline-offset-4 hover:underline hover:text-blue-600 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
 			},
 			size: {
-				xs: 'h-7 px-2 ios-text-xs ios-rounded-sm [&_svg]:size-3',
-				sm: 'h-8 px-3 ios-text-sm ios-rounded-md [&_svg]:size-3.5',
-				default: 'h-9 px-4 ios-text-sm ios-rounded-md [&_svg]:size-4',
-				md: 'h-9 px-4 ios-text-sm ios-rounded-md [&_svg]:size-4',
-				lg: 'h-11 px-6 ios-text-md ios-rounded-lg [&_svg]:size-5',
-				xl: 'h-12 px-8 ios-text-lg ios-rounded-lg [&_svg]:size-6',
-				icon: 'h-9 w-9 ios-rounded-md [&_svg]:size-4',
+				xs: 'h-7 px-2 text-xs rounded-md [&_svg]:size-3',
+				sm: 'h-8 px-3 text-sm rounded-lg [&_svg]:size-3.5',
+				default: 'h-9 px-4 text-sm rounded-lg [&_svg]:size-4',
+				md: 'h-9 px-4 text-sm rounded-lg [&_svg]:size-4',
+				lg: 'h-11 px-6 text-base rounded-xl [&_svg]:size-5',
+				xl: 'h-12 px-8 text-lg rounded-xl [&_svg]:size-6',
+				icon: 'h-9 w-9 rounded-lg [&_svg]:size-4',
 			},
 		},
 		defaultVariants: {

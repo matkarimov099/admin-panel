@@ -43,18 +43,17 @@ const months = [
 ];
 
 const multiSelectVariants = cva(
-	'flex items-center justify-center whitespace-nowrap rounded-ios-md text-sm font-medium text-ios-label transition-all duration-[var(--motion-short)] focus-visible:outline-none focus-visible:ring-ios disabled:pointer-events-none disabled:opacity-50 hover-lift',
+	'flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium text-foreground transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
 	{
 		variants: {
 			variant: {
-				default:
-					'bg-[var(--system-blue)] text-white hover:bg-[var(--system-blue-500)] shadow-ios-sm',
-				destructive: 'bg-[var(--system-red)] text-white hover:bg-[var(--system-red)] shadow-ios-sm',
-				outline: 'border-ios bg-ios-card hover:bg-[var(--control-ghost-bg)] hover:shadow-ios-md',
-				secondary:
-					'bg-[var(--system-green)] text-white hover:bg-[var(--system-green)] shadow-ios-sm',
-				ghost: 'hover:bg-[var(--control-ghost-bg)] text-ios-label',
-				link: 'underline-offset-4 hover:underline text-ios-label',
+				default: 'bg-blue-500 text-white hover:bg-blue-600 hover:shadow-md shadow-sm',
+				destructive: 'bg-red-500 text-white hover:bg-red-600 hover:shadow-md shadow-sm',
+				outline:
+					'border border-border bg-card hover:bg-accent hover:text-accent-foreground hover:shadow-sm',
+				secondary: 'bg-green-600 text-white hover:bg-green-700 hover:shadow-md shadow-sm',
+				ghost: 'hover:bg-accent hover:text-accent-foreground text-foreground',
+				link: 'underline-offset-4 hover:underline text-foreground hover:text-blue-600',
 			},
 		},
 		defaultVariants: {
@@ -188,7 +187,7 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 					}
 				}
 			},
-			[yearFrom, yearsRange, numberOfMonths, timeZone, onDateSelect, yearTo, setSelectedRange, date?.from, date.to, setMonthFrom, setMonthTo]
+			[yearFrom, yearsRange, numberOfMonths, timeZone, onDateSelect, yearTo, date?.from, date.to]
 		);
 
 		const handleYearChange = React.useCallback(
@@ -236,7 +235,7 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 					}
 				}
 			},
-			[years, monthFrom, numberOfMonths, timeZone, onDateSelect, monthTo, setSelectedRange, date.from, date.to, setYearFrom, setMonthFrom, setYearTo, setMonthTo]
+			[years, monthFrom, numberOfMonths, timeZone, onDateSelect, monthTo, date.from, date.to]
 		);
 
 		const dateRanges = [
@@ -322,7 +321,19 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 					handleYearChange(newYear, 'to');
 				}
 			},
-			[highlightedPart, numberOfMonths, onDateSelect, monthFrom, yearFrom, monthTo, yearTo, handleMonthChange, handleYearChange, setSelectedRange, date.from, date.to, setMonthFrom, setMonthTo]
+			[
+				highlightedPart,
+				numberOfMonths,
+				onDateSelect,
+				monthFrom,
+				yearFrom,
+				monthTo,
+				yearTo,
+				handleMonthChange,
+				handleYearChange,
+				date.from,
+				date.to,
+			]
 		);
 
 		React.useEffect(() => {
@@ -549,9 +560,9 @@ export const CalendarDatePicker = React.forwardRef<HTMLButtonElement, CalendarDa
 												variant="ghost"
 												size="default"
 												className={cn(
-													'justify-start hover:bg-primary/90 hover:text-background',
+													'justify-start hover:bg-primary hover:text-primary-foreground hover:shadow-sm',
 													selectedRange === label &&
-														'bg-primary text-background hover:bg-primary/90 hover:text-background'
+														'bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground'
 												)}
 												onClick={() => {
 													selectDateRange(start, end, label);

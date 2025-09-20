@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 export const AuthLayout = () => {
 	return (
-		<div className="relative flex min-h-screen w-full flex-col items-center justify-center bg-ios-background">
+		<div className="relative flex min-h-screen w-full flex-col items-center justify-center bg-background">
 			<div
 				className={cn(
 					'absolute inset-0',

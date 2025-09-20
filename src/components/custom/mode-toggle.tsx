@@ -47,15 +47,15 @@ export function ModeToggle() {
 					<Button
 						variant="ghost"
 						size="sm"
-						className="group relative mr-2 h-9 w-9 overflow-hidden ios-bg-card p-0 ios-backdrop-blur ios-transition hover:border-[var(--system-blue)]/30 hover:ios-bg-control-ghost"
+						className="group relative mr-2 h-9 w-9 overflow-hidden bg-card p-0 backdrop-blur-sm transition-colors duration-200 hover:border-[var(--system-blue)]/30 hover:bg-muted/50"
 					>
 						<div className="relative flex h-full w-full items-center justify-center">
 							{/* Icon with rotation animation */}
 							<CurrentIcon
 								className={cn(
-									'!h-5 !w-5 ios-transition-transform group-hover:scale-110',
+									'!h-5 !w-5 transition-transform duration-200 group-hover:scale-110',
 									currentTheme?.iconColor,
-									theme === 'system' && 'ios-animate-pulse'
+									theme === 'system' && 'animate-pulse'
 								)}
 							/>
 						</div>
@@ -72,8 +72,8 @@ export function ModeToggle() {
 								key={option.value}
 								onClick={() => setTheme(option.value as 'light' | 'dark' | 'system')}
 								className={cn(
-									'group relative mx-1 my-0.5 flex cursor-pointer items-center gap-3 rounded-[var(--radius-sm)] px-3 py-3',
-									isSelected && 'bg-[var(--system-blue)]/10 ios-text-blue'
+									'group relative mx-1 my-0.5 flex cursor-pointer items-center gap-3 rounded-[var(--radius-sm)] px-3 py-3 transition-colors duration-200 hover:bg-muted/80',
+									isSelected && 'bg-[var(--system-blue)]/10 text-foreground'
 								)}
 							>
 								<div className="flex flex-1 items-center gap-3">
@@ -83,14 +83,12 @@ export function ModeToggle() {
 									</div>
 									<div className="flex flex-col">
 										<span className="font-medium text-sm">{option.label}</span>
-										<span className="ios-text-secondary ios-text-xs ios-font">
-											{option.description}
-										</span>
+										<span className="text-muted-foreground text-xs">{option.description}</span>
 									</div>
 								</div>
 								{isSelected && (
 									<div className="flex items-center gap-1">
-										<CheckIcon className="h-4 w-4 ios-text-blue" />
+										<CheckIcon className="h-4 w-4" />
 									</div>
 								)}
 							</DropdownMenuItem>

@@ -8,14 +8,14 @@ const alertVariants = cva(
 	{
 		variants: {
 			variant: {
-				default: 'ios-bg-card ios-text-primary ios-border ios-shadow-sm',
+				default: 'bg-card text-primary border shadow-sm',
 				destructive:
-					'ios-text-red bg-[color-mix(in_srgb,var(--system-red)_8%,var(--card-bg))] border-[color-mix(in_srgb,var(--system-red)_20%,var(--border))] [&>svg]:text-current *:data-[slot=alert-description]:ios-text-red/90',
+					'text-red bg-[color-mix(in_srgb,var(--system-red)_8%,var(--card-bg))] border-[color-mix(in_srgb,var(--system-red)_20%,var(--border))] [&>svg]:text-current *:data-[slot=alert-description]:text-red/90',
 				success:
-					'ios-text-green bg-[color-mix(in_srgb,var(--system-green)_8%,var(--card-bg))] border-[color-mix(in_srgb,var(--system-green)_20%,var(--border))] [&>svg]:text-current *:data-[slot=alert-description]:ios-text-green/90',
+					'text-green bg-[color-mix(in_srgb,var(--system-green)_8%,var(--card-bg))] border-[color-mix(in_srgb,var(--system-green)_20%,var(--border))] [&>svg]:text-current *:data-[slot=alert-description]:text-green/90',
 				warning:
-					'ios-text-yellow bg-[color-mix(in_srgb,var(--system-yellow)_8%,var(--card-bg))] border-[color-mix(in_srgb,var(--system-yellow)_20%,var(--border))] [&>svg]:text-current *:data-[slot=alert-description]:ios-text-yellow/90',
-				info: 'ios-text-cyan bg-[color-mix(in_srgb,var(--system-cyan)_8%,var(--card-bg))] border-[color-mix(in_srgb,var(--system-cyan)_20%,var(--border))] [&>svg]:text-current *:data-[slot=alert-description]:ios-text-cyan/90',
+					'text-yellow bg-[color-mix(in_srgb,var(--system-yellow)_8%,var(--card-bg))] border-[color-mix(in_srgb,var(--system-yellow)_20%,var(--border))] [&>svg]:text-current *:data-[slot=alert-description]:text-yellow/90',
+				info: 'text-cyan bg-[color-mix(in_srgb,var(--system-cyan)_8%,var(--card-bg))] border-[color-mix(in_srgb,var(--system-cyan)_20%,var(--border))] [&>svg]:text-current *:data-[slot=alert-description]:text-cyan/90',
 			},
 		},
 		defaultVariants: {
@@ -54,7 +54,7 @@ function AlertDescription({ className, ...props }: React.ComponentProps<'div'>) 
 		<div
 			data-slot="alert-description"
 			className={cn(
-				'col-start-2 grid justify-items-start gap-1 ios-text-secondary ios-text-sm ios-font [&_p]:leading-relaxed',
+				'col-start-2 grid justify-items-start gap-1 text-secondary text-sm font [&_p]:leading-relaxed',
 				className
 			)}
 			{...props}

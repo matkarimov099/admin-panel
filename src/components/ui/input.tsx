@@ -38,17 +38,17 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 		// Apply reduced motion classes if the user prefers reduced motion
 		const motionAwareClassName = React.useMemo(() => {
 			return cn(
-				'flex w-full ios-bg-control ios-border-control ios-rounded-md ios-text-primary ios-font file:border-0 file:bg-transparent file:font-medium file:ios-text-primary placeholder:ios-text-secondary placeholder:opacity-90 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 appearance-none',
-				// Focus styles - consistent with data table toolbar
-				'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0',
+				'flex w-full bg-control border-2 border-[var(--control-border)] rounded-md text-primary font file:border-0 file:bg-transparent file:font-medium file:text-primary placeholder:text-secondary placeholder:opacity-90 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 appearance-none',
+				// Focus styles - blue focus ring (smaller)
+				'focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus:border-blue-500',
 				// Transition with conditional duration
-				prefersReducedMotion ? 'transition-colors duration-0' : 'ios-transition-fast',
+				prefersReducedMotion ? 'transition-colors duration-0' : 'transition-fast',
 				// Size-specific classes
-				inputSize === 'xs' && 'h-7 ios-text-xs px-2 py-1 ios-rounded-sm',
-				inputSize === 'sm' && 'h-8 ios-text-sm px-3 py-1.5 ios-rounded-md',
-				inputSize === 'md' && 'h-9 ios-text-md px-4 py-2 ios-rounded-md',
-				inputSize === 'lg' && 'h-11 ios-text-lg px-5 py-2.5 ios-rounded-lg',
-				inputSize === 'xl' && 'h-12 ios-text-xl px-6 py-3 ios-rounded-lg',
+				inputSize === 'xs' && 'h-7 text-xs px-2 py-1 rounded-sm',
+				inputSize === 'sm' && 'h-8 text-sm px-3 py-1.5 rounded-md',
+				inputSize === 'md' && 'h-9 text-base px-4 py-2 rounded-md',
+				inputSize === 'lg' && 'h-11 text-lg px-5 py-2.5 rounded-lg',
+				inputSize === 'xl' && 'h-12 text-xl px-6 py-3 rounded-lg',
 				// Error state
 				error && 'border-[var(--system-red)] focus:border-[var(--system-red)]',
 				className
@@ -58,10 +58,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 		return (
 			<div className="space-y-1">
 				{label && (
-					<label htmlFor={inputId} className="block ios-font ios-text-primary ios-text-sm">
+					<label htmlFor={inputId} className="block font text-primary text-sm">
 						{label}
 						{props.required && (
-							<span className="ml-1 ios-text-red" aria-label="required">
+							<span className="ml-1 text-red" aria-label="required">
 								*
 							</span>
 						)}
@@ -80,18 +80,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 				/>
 
 				{error && (
-					<p
-						id={errorId}
-						className="ios-font ios-text-red ios-text-sm"
-						role="alert"
-						aria-live="polite"
-					>
+					<p id={errorId} className="font text-red text-sm" role="alert" aria-live="polite">
 						{error}
 					</p>
 				)}
 
 				{helperText && !error && (
-					<p id={helperTextId} className="ios-font ios-text-secondary ios-text-sm">
+					<p id={helperTextId} className="font text-secondary text-sm">
 						{helperText}
 					</p>
 				)}

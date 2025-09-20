@@ -7,8 +7,8 @@ import {
 } from '@/components/ui/dropdown-menu.tsx';
 import { useI18n } from '@/hooks/use-i18n';
 import type { Locale } from '@/lib/i18n';
-import { cn } from '@/utils/utils';
 import { addLocaleToPath, removeLocaleFromPath } from '@/plugins/i18n-routing.ts';
+import { cn } from '@/utils/utils';
 import { CheckIcon, GlobeIcon } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -61,7 +61,7 @@ export function LanguageToggle() {
 					<Button
 						variant="ghost"
 						size="sm"
-						className="group relative mr-2 h-9 w-9 overflow-hidden p-0 ios-transition"
+						className="group relative mr-2 h-9 w-9 overflow-hidden p-0 transition-colors duration-200"
 					>
 						<div className="relative flex h-full w-full items-center justify-center">
 							{/* Flag or Globe icon */}
@@ -87,28 +87,22 @@ export function LanguageToggle() {
 								key={option.code}
 								onClick={() => handleLanguageChange(option.code)}
 								className={cn(
-									'group relative mx-1 my-0.5 flex cursor-pointer items-center gap-3 px-3 py-3',
-									isSelected && 'bg-[var(--system-blue)]/10 ios-text-blue'
+									'group relative mx-1 my-0.5 flex cursor-pointer items-center gap-3 px-3 py-3 transition-colors duration-200 hover:bg-muted/80',
+									isSelected && 'bg-[var(--system-blue)]/10 text-foreground'
 								)}
 							>
 								<div className="flex flex-1 items-center gap-3">
 									<div className="relative flex items-center justify-center overflow-hidden">
-										<img
-											src={option.flag}
-											alt={option.name}
-											className="relative z-10 h-7 w-7"
-										/>
+										<img src={option.flag} alt={option.name} className="relative z-10 h-7 w-7" />
 									</div>
 									<div className="flex flex-col">
 										<span className="font-medium text-sm">{option.name}</span>
-										<span className="ios-text-secondary ios-text-xs ios-font">
-											{option.description}
-										</span>
+										<span className="text-muted-foreground text-xs">{option.description}</span>
 									</div>
 								</div>
 								{isSelected && (
 									<div className="flex items-center gap-1">
-										<CheckIcon className="h-6 w-6 ios-text-blue" />
+										<CheckIcon className="h-6 w-6" />
 									</div>
 								)}
 							</DropdownMenuItem>

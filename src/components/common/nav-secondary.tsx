@@ -9,8 +9,8 @@ import {
 import { useI18n } from '@/hooks/use-i18n';
 import { useSidebar } from '@/hooks/use-sidebar';
 import { footerMenuItems } from '@/lib/sidebar-menu.tsx';
-import { cn } from '@/utils/utils';
 import { removeLocaleFromPath } from '@/plugins/i18n-routing.ts';
+import { cn } from '@/utils/utils';
 import type * as React from 'react';
 import { useLocation } from 'react-router';
 

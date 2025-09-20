@@ -19,7 +19,7 @@ const Login = () => {
 			animate={{ opacity: 1, y: 0, scale: 1 }}
 			transition={{
 				duration: 0.4,
-				ease: [0.2, 0.9, 0.25, 1], // iOS cubic-bezier
+				ease: [0.2, 0.9, 0.25, 1], // smooth cubic-bezier
 			}}
 			className="w-full"
 		>

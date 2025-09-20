@@ -52,7 +52,7 @@ function DialogContent({
 			<DialogPrimitive.Content
 				data-slot="dialog-content"
 				className={cn(
-					'ios-border ios-bg-content ios-text-primary ios-shadow-lg ios-backdrop-blur ios-rounded-lg',
+					'border bg-content text-primary shadow-lg backdrop-blur rounded-lg',
 					'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=open]:animate-in',
 					'data-[state=closed]:zoom-out-96 data-[state=open]:zoom-in-96 data-[state=closed]:slide-out-to-top-[2%] data-[state=open]:slide-in-from-top-[2%]',
 					'fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 p-6 sm:max-w-lg',
@@ -66,7 +66,7 @@ function DialogContent({
 				{showCloseButton && (
 					<DialogPrimitive.Close
 						data-slot="dialog-close"
-						className="absolute top-4 right-4 rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
+						className="absolute top-4 right-4 rounded-xs text-muted-foreground ring-offset-background transition-colors hover:text-foreground hover:bg-accent focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0"
 					>
 						<XIcon />
 						<span className="sr-only">Close</span>
@@ -101,7 +101,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<typeof Dialog
 	return (
 		<DialogPrimitive.Title
 			data-slot="dialog-title"
-			className={cn('font-semibold ios-text-lg leading-none ios-font ios-text-primary', className)}
+			className={cn('font-semibold text-lg leading-none font text-primary', className)}
 			{...props}
 		/>
 	);
@@ -114,7 +114,7 @@ function DialogDescription({
 	return (
 		<DialogPrimitive.Description
 			data-slot="dialog-description"
-			className={cn('ios-text-secondary ios-text-sm ios-font', className)}
+			className={cn('text-secondary text-sm font', className)}
 			{...props}
 		/>
 	);

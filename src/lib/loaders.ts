@@ -1,7 +1,7 @@
 import type { Locale } from '@/context/i18n-context.ts';
 import { getUserFromToken, isAuthenticated } from '@/lib/auth.ts';
-import { getPreferredLocale, isValidLocale } from '@/utils/locale-utils.ts';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/plugins/i18n-routing.ts';
+import { getPreferredLocale, isValidLocale } from '@/utils/locale-utils.ts';
 import type { LoaderFunctionArgs } from 'react-router';
 import { redirect } from 'react-router';
 

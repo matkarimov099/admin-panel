@@ -374,7 +374,7 @@ export function DataTable<TData>({
 				console.error('Failed to save column order to localStorage:', error);
 			}
 		},
-		[columnOrder]
+		[columnOrder, tableId]
 	);
 
 	// Load column order from localStorage on initial render
@@ -471,7 +471,7 @@ export function DataTable<TData>({
 		} catch (error) {
 			console.error('Failed to remove column order from localStorage:', error);
 		}
-	}, [table]);
+	}, [table, tableId]);
 
 	return (
 		<div className="space-y-4">
@@ -507,19 +507,19 @@ export function DataTable<TData>({
 
 			<div
 				ref={tableContainerRef}
-				className="table-container overflow-y-auto rounded-ios-lg border-ios bg-ios-card shadow-ios-sm saturate-[150%] backdrop-blur-[10px]"
+				className="table-container overflow-y-auto rounded-lg bg-card shadow-sm saturate-[150%] backdrop-blur-[10px]"
 				aria-label="Data table"
 				onKeyDown={tableConfig.enableKeyboardNavigation ? handleKeyDown : undefined}
 			>
 				<Table
-					className={`${tableConfig.enableColumnResizing ? 'resizable-table' : ''} text-ios-label`}
+					className={`${tableConfig.enableColumnResizing ? 'resizable-table' : ''} text-foreground`}
 				>
 					<TableHeader>
 						{table.getHeaderGroups().map(headerGroup => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map(header => (
 									<TableHead
-										className="group/th relative border-ios border-b bg-[var(--secondaryBackground)] px-2 py-2 text-left font-semibold text-ios-label"
+										className="group/th relative border-b border-border bg-muted px-2 py-2 text-left font-semibold text-foreground"
 										key={header.id}
 										colSpan={header.colSpan}
 										scope="col"
@@ -553,7 +553,7 @@ export function DataTable<TData>({
 											return (
 												<TableCell
 													key={cellKey}
-													className="max-w-0 truncate border-ios border-b px-4 py-2 text-left text-ios-label"
+													className="max-w-0 truncate border-b border-border px-4 py-2 text-left text-foreground"
 													tabIndex={-1}
 												>
 													<Skeleton className="h-6 w-full" />
@@ -593,7 +593,7 @@ export function DataTable<TData>({
 									>
 										{row.getVisibleCells().map((cell, cellIndex) => (
 											<TableCell
-												className="max-w-0 truncate border-ios border-b px-4 py-2 text-left text-ios-label transition-colors duration-[var(--motion-short)] hover:bg-[var(--control-ghost-bg)]"
+												className="max-w-0 truncate border-b border-border px-4 py-2 text-left text-foreground transition-colors duration-200 hover:bg-muted/50"
 												key={cell.id}
 												id={`cell-${rowIndex}-${cellIndex}`}
 												data-cell-index={cellIndex}
@@ -608,7 +608,7 @@ export function DataTable<TData>({
 							<TableRow>
 								<TableCell
 									colSpan={columns.length}
-									className="h-24 truncate text-center text-ios-muted"
+									className="h-24 truncate text-center text-muted-foreground"
 								>
 									{t('dataTable.noResults')}
 								</TableCell>

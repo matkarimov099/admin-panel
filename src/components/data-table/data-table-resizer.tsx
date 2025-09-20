@@ -16,8 +16,8 @@ export function DataTableResizer<TData>({ header }: DataTableResizerProps<TData>
 			onTouchStart={header.getResizeHandler()}
 			className={cn(
 				'absolute top-0 right-0 flex h-full w-4 cursor-col-resize touch-none select-none items-center justify-center',
-				'z-10 opacity-0 group-hover/th:opacity-100',
-				isResizing && 'opacity-100'
+				'z-10 scale-0 transition-transform duration-200 group-hover/th:scale-100',
+				isResizing && 'scale-100'
 			)}
 			aria-hidden="true"
 			data-resizing={isResizing ? 'true' : undefined}

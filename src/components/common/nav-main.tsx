@@ -13,8 +13,8 @@ import {
 import { useI18n } from '@/hooks/use-i18n';
 import { useSidebar } from '@/hooks/use-sidebar';
 import { mainMenuItems } from '@/lib/sidebar-menu.tsx';
-import { cn } from '@/utils/utils';
 import { removeLocaleFromPath } from '@/plugins/i18n-routing.ts';
+import { cn } from '@/utils/utils';
 import { ChevronDown, ChevronRightIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
@@ -52,8 +52,8 @@ export function NavMain() {
 		<SidebarGroup>
 			<SidebarGroupLabel
 				className={cn(
-					'px-2 font-semibold text-[var(--secondaryLabel)] text-xs uppercase tracking-wider transition-opacity duration-200',
-					isCollapsed && 'opacity-0'
+					'px-2 font-semibold text-xs uppercase tracking-wider transition-colors duration-200',
+					isCollapsed ? 'text-transparent' : 'text-[var(--secondaryLabel)]'
 				)}
 			>
 				{t('navigation.menu')}

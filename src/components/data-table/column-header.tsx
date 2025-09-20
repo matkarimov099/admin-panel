@@ -47,7 +47,7 @@ export function DataTableColumnHeader<TData, TValue>({
 					<Button
 						variant="ghost"
 						size="sm"
-						className="h-8 text-ios-label transition-colors duration-[var(--motion-short)] hover:bg-[var(--control-ghost-bg)] focus-visible:ring-ios data-[state=open]:bg-[var(--control-ghost-bg)]"
+						className="h-8 text-foreground transition-colors duration-200 hover:bg-[color-mix(in_srgb,var(--system-blue)_8%,transparent)] focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:bg-[color-mix(in_srgb,var(--system-blue)_8%,transparent)]"
 					>
 						<span>{title}</span>
 						{currentDirection === 'desc' ? (
@@ -61,16 +61,16 @@ export function DataTableColumnHeader<TData, TValue>({
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="start">
 					<DropdownMenuItem onClick={() => setSorting('asc')}>
-						<ArrowUpIcon className="mr-2 h-3.5 w-3.5 text-ios-muted" />
+						<ArrowUpIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground" />
 						Asc
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => setSorting('desc')}>
-						<ArrowDownIcon className="mr-2 h-3.5 w-3.5 text-ios-muted" />
+						<ArrowDownIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground" />
 						Desc
 					</DropdownMenuItem>
-					<DropdownMenuSeparator className="bg-ios" />
+					<DropdownMenuSeparator className="bg-border" />
 					<DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-						<EyeOffIcon className="mr-2 h-3.5 w-3.5 text-ios-muted" />
+						<EyeOffIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground" />
 						Hide
 					</DropdownMenuItem>
 				</DropdownMenuContent>

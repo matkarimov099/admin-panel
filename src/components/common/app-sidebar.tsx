@@ -45,14 +45,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 							size="lg"
 							asChild
 							className={cn(
-								'group transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.25,1)] hover:scale-[1.02]',
+								'group transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.25,1)]',
 								isCollapsed && 'px-2 justify-center'
 							)}
 						>
 							<LocalizedNavLink to="/">
 								<div
 									className={cn(
-										'flex items-center justify-center rounded-lg relative transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.25,1)] group-hover:shadow-lg',
+										'flex items-center justify-center rounded-lg relative transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.25,1)]',
 										isCollapsed ? 'size-8' : 'size-8',
 										'bg-gradient-to-br from-[var(--system-blue)] via-[var(--system-blue)]/90 to-[var(--system-blue)]/70',
 										'shadow-lg border border-white/20'
@@ -71,19 +71,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
 								{!isCollapsed && (
 									<div className="grid flex-1 text-left text-sm leading-tight transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.25,1)]">
-										<span
-											className="truncate font-semibold bg-gradient-to-r from-[var(--label)] to-[var(--label)]/80 bg-clip-text text-transparent"
-											style={{ fontFamily: 'var(--font-sans)' }}
-										>
+										<span className="truncate font-semibold bg-gradient-to-r from-[var(--label)] to-[var(--label)]/80 bg-clip-text text-transparent font-sans">
 											Project
 										</span>
-										<span
-											className="truncate text-xs opacity-75 transition-opacity duration-200 group-hover:opacity-100"
-											style={{
-												color: 'var(--secondaryLabel)',
-												fontFamily: 'var(--font-sans)',
-											}}
-										>
+										<span className="truncate text-xs transition-colors duration-200 group-hover:text-[var(--label)] text-[var(--secondaryLabel)] font-sans">
 											Creative workspace
 										</span>
 									</div>

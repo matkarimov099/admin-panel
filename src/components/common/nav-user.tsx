@@ -29,7 +29,7 @@ export function NavUser({ user, logout }: NavUserProps) {
 		<div
 			className={cn(
 				'relative',
-				'before:-top-3 before:absolute before:right-0 before:left-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[var(--border)]/50 before:to-transparent'
+				'before:-top-3 before:absolute before:inset-x-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[var(--border)]/50 before:to-transparent'
 			)}
 		>
 			<SidebarMenu>
@@ -40,7 +40,7 @@ export function NavUser({ user, logout }: NavUserProps) {
 								size={isCollapsed ? 'sm' : 'lg'}
 								className={cn(
 									'group cursor-pointer relative transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.25,1)]',
-									'hover:border-[var(--system-blue)]/30 hover:shadow-md',
+									'hover:border-[var(--system-blue)]/30',
 									'data-[state=open]:border-[var(--system-blue)]/40 data-[state=open]:bg-[var(--control-ghost-bg)]',
 									isCollapsed && 'h-9 w-9 justify-center p-0'
 								)}
@@ -66,7 +66,7 @@ export function NavUser({ user, logout }: NavUserProps) {
 								</div>
 								{!isCollapsed && (
 									<>
-										<div className="grid flex-1 text-left text-sm leading-tight transition-all duration-300">
+										<div className="grid flex-1 text-left text-sm leading-tight transition-all duration-300 font-sans">
 											<span className="truncate font-medium text-[var(--label)]">
 												{user?.firstname || 'USERNAME'}
 											</span>

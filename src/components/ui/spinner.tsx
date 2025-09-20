@@ -42,13 +42,13 @@ const SwirlingSpinner = ({ size, className }: SwirlingSpinnerProps) => {
 	return (
 		<>
 			<style>
-				{`@keyframes ios-spin {
+				{`@keyframes spin {
             to {
               transform: rotate(360deg);
             }
           }
         
-          @keyframes ios-spin-smooth {
+          @keyframes spin-smooth {
             0% {
               stroke-dasharray: 1, 800;
               stroke-dashoffset: 0;
@@ -63,10 +63,10 @@ const SwirlingSpinner = ({ size, className }: SwirlingSpinnerProps) => {
             }
           }
         
-          .ios-spinner {
+          .spinner {
             transform-origin: center;
-            animation: ios-spin-smooth 1.2s cubic-bezier(0.2, 0.9, 0.25, 1) infinite,
-              ios-spin 1.8s linear infinite;
+            animation: spin-smooth 1.2s cubic-bezier(0.2, 0.9, 0.25, 1) infinite,
+              spin 1.8s linear infinite;
             animation-direction: normal;
           }`}
 			</style>
@@ -78,7 +78,7 @@ const SwirlingSpinner = ({ size, className }: SwirlingSpinnerProps) => {
 			>
 				<title id="spinnerTitle">Loading Spinner</title>
 				<circle
-					className="ios-spinner stroke-[var(--system-blue)]"
+					className="spinner stroke-[var(--system-blue)]"
 					cx="400"
 					cy="400"
 					fill="none"

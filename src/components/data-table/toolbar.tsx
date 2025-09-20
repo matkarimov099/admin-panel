@@ -82,7 +82,7 @@ export function DataTableToolbar<TData>({
 									table.setGlobalFilter(event.target.value);
 								}
 							}}
-							className="w-[350px] rounded-md border border-border/50 bg-background/80 pl-8 text-foreground placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-0 lg:w-[300px]"
+							className="w-[350px] rounded-md border-2 border-[var(--control-border)] bg-background/80 pl-8 text-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus:border-blue-500 lg:w-[300px]"
 						/>
 						{((config.manualSearching && searchValue) ||
 							(!config.manualSearching && table.getState().globalFilter)) && (
