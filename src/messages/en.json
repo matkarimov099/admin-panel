@@ -19,7 +19,8 @@
     "close": "Close",
     "tryAgain": "Try Again",
     "goBack": "Go Back",
-    "home": "Home"
+    "home": "Home",
+    "clear": "Clear"
   },
   "errors": {
     "notFound": "Page Not Found",
@@ -53,6 +54,46 @@
     "notifications": "Notifications",
     "upgrade": "Upgrade to Pro",
     "home": "Home"
+  },
+  "theme": {
+    "toggleTheme": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "lightDescription": "Clean and bright",
+    "darkDescription": "Easy on the eyes",
+    "systemDescription": "Adapts to device"
+  },
+  "calendar": {
+    "selectDate": "Select a date",
+    "selectDateRange": "Select date range",
+    "month": "Month",
+    "year": "Year",
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "ranges": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "thisWeek": "This Week",
+      "lastWeek": "Last Week",
+      "last7Days": "Last 7 Days",
+      "thisMonth": "This Month",
+      "lastMonth": "Last Month",
+      "thisYear": "This Year",
+      "lastYear": "Last Year"
+    }
   },
   "pages": {
     "reports": {

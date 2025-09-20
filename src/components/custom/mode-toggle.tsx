@@ -8,33 +8,36 @@ import {
 import { useTheme } from '@/hooks/use-theme.ts';
 import { cn } from '@/utils/utils';
 import { CheckIcon, MonitorIcon, MoonIcon, SunIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-const themeOptions = [
-	{
-		value: 'light',
-		label: "Yorug'",
-		description: 'Toza va yorqin',
-		icon: SunIcon,
-		iconColor: 'text-amber-800 dark:text-amber-400',
-	},
-	{
-		value: 'dark',
-		label: "Qorong'i",
-		description: "Ko'zga qulay",
-		icon: MoonIcon,
-		iconColor: 'text-slate-600 dark:text-slate-400',
-	},
-	{
-		value: 'system',
-		label: 'Tizim',
-		description: 'Qurilmaga moslashadi',
-		icon: MonitorIcon,
-		iconColor: 'text-blue-600 dark:text-blue-400',
-	},
-];
 
 export function ModeToggle() {
 	const { theme, setTheme } = useTheme();
+	const { t } = useTranslation();
+
+	const themeOptions = [
+		{
+			value: 'light',
+			label: t('theme.light'),
+			description: t('theme.lightDescription'),
+			icon: SunIcon,
+			iconColor: 'text-amber-800 dark:text-amber-400',
+		},
+		{
+			value: 'dark',
+			label: t('theme.dark'),
+			description: t('theme.darkDescription'),
+			icon: MoonIcon,
+			iconColor: 'text-slate-600 dark:text-slate-400',
+		},
+		{
+			value: 'system',
+			label: t('theme.system'),
+			description: t('theme.systemDescription'),
+			icon: MonitorIcon,
+			iconColor: 'text-blue-600 dark:text-blue-400',
+		},
+	];
 
 	// Actual theme'ni aniqlash
 	const currentTheme = themeOptions.find(option => option.value === theme);
@@ -59,7 +62,7 @@ export function ModeToggle() {
 								)}
 							/>
 						</div>
-						<span className="sr-only">Toggle theme</span>
+						<span className="sr-only">{t('theme.toggleTheme')}</span>
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end" className="w-64">

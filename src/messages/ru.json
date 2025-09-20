@@ -19,7 +19,8 @@
 		"close": "Закрыть",
 		"tryAgain": "Попробовать снова",
 		"goBack": "Вернуться назад",
-		"home": "Главная"
+		"home": "Главная",
+		"clear": "Очистить"
 	},
 	"navigation": {
 		"menu": "МЕНЮ",
@@ -42,6 +43,46 @@
 		"home": "Главная страница",
 		"notifications": "Уведомления",
 		"upgrade": "Обновить до Pro"
+	},
+	"theme": {
+		"toggleTheme": "Переключить тему",
+		"light": "Светлая",
+		"dark": "Темная",
+		"system": "Системная",
+		"lightDescription": "Чистый и яркий",
+		"darkDescription": "Комфортно для глаз",
+		"systemDescription": "Адаптируется к устройству"
+	},
+	"calendar": {
+		"selectDate": "Выберите дату",
+		"selectDateRange": "Выберите диапазон дат",
+		"month": "Месяц",
+		"year": "Год",
+		"months": {
+			"january": "Январь",
+			"february": "Февраль",
+			"march": "Март",
+			"april": "Апрель",
+			"may": "Май",
+			"june": "Июнь",
+			"july": "Июль",
+			"august": "Август",
+			"september": "Сентябрь",
+			"october": "Октябрь",
+			"november": "Ноябрь",
+			"december": "Декабрь"
+		},
+		"ranges": {
+			"today": "Сегодня",
+			"yesterday": "Вчера",
+			"thisWeek": "Эта неделя",
+			"lastWeek": "Прошлая неделя",
+			"last7Days": "Последние 7 дней",
+			"thisMonth": "Этот месяц",
+			"lastMonth": "Прошлый месяц",
+			"thisYear": "Этот год",
+			"lastYear": "Прошлый год"
+		}
 	},
 	"pages": {
 		"reports": {

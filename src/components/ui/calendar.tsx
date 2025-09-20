@@ -1,6 +1,27 @@
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import * as React from 'react';
 import { type DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker';
+import { enUS, ru } from 'date-fns/locale';
+import { useTranslation } from 'react-i18next';
+
+// Custom Uzbek locale
+const uz = {
+	...enUS,
+	localize: {
+		...enUS.localize,
+		month: (monthIndex: number) => {
+			const months = [
+				'Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun',
+				'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'
+			];
+			return months[monthIndex];
+		},
+		day: (dayIndex: number) => {
+			const days = ['Yak', 'Du', 'Se', 'Cho', 'Pay', 'Jum', 'Sha'];
+			return days[dayIndex];
+		}
+	}
+};
 
 import { Button } from '@/components/ui/button';
 import { buttonVariants } from '@/components/ui/button-variants.tsx';
@@ -14,28 +35,59 @@ function Calendar({
 	buttonVariant = 'ghost',
 	formatters,
 	components,
+	size = 'default',
 	...props
 }: React.ComponentProps<typeof DayPicker> & {
 	buttonVariant?: React.ComponentProps<typeof Button>['variant'];
+	size?: 'default' | 'large' | 'full';
 }) {
 	const defaultClassNames = getDefaultClassNames();
+	const { i18n } = useTranslation();
+
+	// Get the appropriate locale based on the current language
+	const getLocale = () => {
+		switch (i18n.language) {
+			case 'ru':
+				return ru;
+			case 'uz':
+				return uz;
+			default:
+				return enUS;
+		}
+	};
 
 	return (
 		<DayPicker
+			locale={getLocale()}
 			showOutsideDays={showOutsideDays}
 			className={cn(
-				'group/calendar bg-background p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent',
+				'group/calendar bg-background p-1 [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent',
+				size === 'default' && '[--cell-size:--spacing(8)]',
+				size === 'large' && '[--cell-size:--spacing(10)]',
+				size === 'full' && '[--cell-size:--spacing(12)] w-full',
 				String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
 				String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
 				className
 			)}
 			captionLayout={captionLayout}
 			formatters={{
-				formatMonthDropdown: date => date.toLocaleString('default', { month: 'short' }),
+				formatMonthDropdown: date => {
+					if (i18n.language === 'uz') {
+						const months = [
+							'Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun',
+							'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'
+						];
+						return months[date.getMonth()];
+					}
+					return date.toLocaleString(i18n.language === 'ru' ? 'ru' : 'en', { month: 'short' });
+				},
 				...formatters,
 			}}
 			classNames={{
-				root: cn('w-fit', defaultClassNames.root),
+				root: cn(
+					size === 'full' ? 'w-full' : 'w-fit',
+					defaultClassNames.root
+				),
 				months: cn('flex gap-4 flex-col md:flex-row relative', defaultClassNames.months),
 				month: cn('flex flex-col w-full gap-4', defaultClassNames.month),
 				nav: cn(
@@ -164,7 +216,7 @@ function CalendarDayButton({
 			data-range-end={modifiers.range_end}
 			data-range-middle={modifiers.range_middle}
 			className={cn(
-				'flex aspect-square size-auto w-full min-w-[--cell-size] flex-col gap-1 font-normal leading-none data-[range-end=true]:rounded-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-start=true]:rounded-l-md data-[range-end=true]:bg-primary data-[range-middle=true]:bg-accent data-[range-start=true]:bg-primary data-[selected-single=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:text-accent-foreground data-[range-start=true]:text-primary-foreground data-[selected-single=true]:text-primary-foreground group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 hover:bg-accent hover:text-accent-foreground [&>span]:text-xs [&>span]:opacity-70',
+				'flex aspect-square size-auto w-full min-w-[--cell-size] flex-col gap-1 font-normal leading-none data-[range-end=true]:rounded-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-start=true]:rounded-l-md data-[range-end=true]:bg-blue-500 data-[range-middle=true]:bg-blue-200 data-[range-start=true]:bg-blue-500 data-[selected-single=true]:bg-blue-500 data-[range-end=true]:text-white data-[range-middle=true]:text-blue-900 data-[range-start=true]:text-white data-[selected-single=true]:text-white group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 hover:bg-accent hover:text-accent-foreground [&>span]:text-xs [&>span]:opacity-70',
 				defaultClassNames.day,
 				className
 			)}

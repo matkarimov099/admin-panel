@@ -19,7 +19,8 @@
 		"close": "Yopish",
 		"tryAgain": "Qayta urinish",
 		"goBack": "Orqaga qaytish",
-		"home": "Uy"
+		"home": "Uy",
+		"clear": "Tozalash"
 	},
 	"navigation": {
 		"menu": "MENYU",
@@ -42,6 +43,46 @@
 		"home": "Bosh sahifa",
 		"notifications": "Bildirishnomalar",
 		"upgrade": "Pro versiyaga o'tish"
+	},
+	"theme": {
+		"toggleTheme": "Tema almashtirish",
+		"light": "Yorug'",
+		"dark": "Qorong'i",
+		"system": "Tizim",
+		"lightDescription": "Toza va yorqin",
+		"darkDescription": "Ko'zga qulay",
+		"systemDescription": "Qurilmaga moslashadi"
+	},
+	"calendar": {
+		"selectDate": "Sanani tanlang",
+		"selectDateRange": "Sana oralig'ini tanlang",
+		"month": "Oy",
+		"year": "Yil",
+		"months": {
+			"january": "Yanvar",
+			"february": "Fevral",
+			"march": "Mart",
+			"april": "Aprel",
+			"may": "May",
+			"june": "Iyun",
+			"july": "Iyul",
+			"august": "Avgust",
+			"september": "Sentabr",
+			"october": "Oktabr",
+			"november": "Noyabr",
+			"december": "Dekabr"
+		},
+		"ranges": {
+			"today": "Bugun",
+			"yesterday": "Kecha",
+			"thisWeek": "Bu hafta",
+			"lastWeek": "O'tgan hafta",
+			"last7Days": "So'nggi 7 kun",
+			"thisMonth": "Bu oy",
+			"lastMonth": "O'tgan oy",
+			"thisYear": "Bu yil",
+			"lastYear": "O'tgan yil"
+		}
 	},
 	"auth": {
 		"login": "Kirish",
