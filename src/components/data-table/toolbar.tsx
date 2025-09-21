@@ -62,134 +62,272 @@ export function DataTableToolbar<TData>({
 		(config.manualSearching && searchValue);
 
 	return (
-		<div className="flex flex-wrap items-center justify-between">
-			<div className="flex flex-1 flex-wrap items-center gap-2">
-				{/* Search input */}
-				{config.enableSearch && (
-					<div className="relative">
-						<Search className="absolute top-2.5 left-2 h-4 w-4 text-muted-foreground" />
-						<Input
-							placeholder={t('dataTable.searchPlaceholder')}
-							value={
-								config.manualSearching
-									? (searchValue ?? '')
-									: ((table.getState().globalFilter as string) ?? '')
-							}
-							onChange={event => {
-								if (config.manualSearching && onSearchChange) {
-									onSearchChange(event.target.value);
-								} else {
-									table.setGlobalFilter(event.target.value);
+		<div className="flex flex-col gap-3">
+			{/* Desktop layout */}
+			<div className="hidden lg:flex lg:items-center lg:justify-between">
+				{/* Left side - Search */}
+				<div className="flex flex-1 items-center gap-2">
+					{config.enableSearch && (
+						<div className="relative">
+							<Search className="absolute top-2.5 left-2 h-4 w-4 text-muted-foreground" />
+							<Input
+								placeholder={t('dataTable.searchPlaceholder')}
+								value={
+									config.manualSearching
+										? (searchValue ?? '')
+										: ((table.getState().globalFilter as string) ?? '')
 								}
-							}}
-							className="w-[350px] rounded-md border-2 border-[var(--control-border)] bg-background/80 pl-8 text-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus:border-blue-500 lg:w-[300px]"
-						/>
-						{((config.manualSearching && searchValue) ||
-							(!config.manualSearching && table.getState().globalFilter)) && (
-							<Button
-								variant="ghost"
-								onClick={() => {
+								onChange={event => {
 									if (config.manualSearching && onSearchChange) {
-										onSearchChange('');
+										onSearchChange(event.target.value);
 									} else {
-										table.setGlobalFilter('');
+										table.setGlobalFilter(event.target.value);
 									}
 								}}
-								className="absolute top-0 right-0 h-full px-3 py-0 hover:bg-transparent"
-							>
-								<X className="h-4 w-4" />
-							</Button>
-						)}
-					</div>
-				)}
-				{/* Clear filters */}
-				{isFiltered && (
-					<Button
-						variant="ghost"
-						onClick={() => {
-							table.resetColumnFilters();
-							if (config.manualSearching && onSearchChange) {
-								onSearchChange('');
-							} else {
-								table.setGlobalFilter('');
-							}
-						}}
-						className="h-8 px-2 lg:px-3"
-					>
-						{t('dataTable.reset')}
-						<X className="ml-2 h-4 w-4" />
-					</Button>
-				)}
+								className="w-[300px] rounded-md border-2 border-[var(--control-border)] bg-background/80 pl-8 text-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus:border-blue-500"
+							/>
+							{((config.manualSearching && searchValue) ||
+								(!config.manualSearching && table.getState().globalFilter)) && (
+								<Button
+									variant="ghost"
+									onClick={() => {
+										if (config.manualSearching && onSearchChange) {
+											onSearchChange('');
+										} else {
+											table.setGlobalFilter('');
+										}
+									}}
+									className="absolute top-0 right-0 h-full px-3 py-0 hover:bg-transparent"
+								>
+									<X className="h-4 w-4" />
+								</Button>
+							)}
+						</div>
+					)}
+					{/* Clear filters */}
+					{isFiltered && (
+						<Button
+							variant="ghost"
+							onClick={() => {
+								table.resetColumnFilters();
+								if (config.manualSearching && onSearchChange) {
+									onSearchChange('');
+								} else {
+									table.setGlobalFilter('');
+								}
+							}}
+							leftIcon={<X className="h-4 w-4" />}
+							hideIcon={false}
+							className="h-8 px-2"
+						/>
+					)}
+				</div>
+
+				{/* Right side - Actions */}
+				<div className="flex items-center gap-2">
+					{/* Custom toolbar component */}
+					{customToolbarComponent}
+
+					{config.enableExport && getAllItems && (
+						<DataTableExport<TData>
+							table={table}
+							data={getAllItems()}
+							selectedData={[]}
+							getSelectedItems={getSelectedItems}
+							entityName={entityName}
+							columnMapping={columnMapping}
+							columnWidths={columnWidths}
+							headers={headers}
+							size={config.size}
+						/>
+					)}
+
+					{/* Column visibility */}
+					{config.enableColumnVisibility && <DataTableViewOptions table={table} size={config.size} />}
+
+					{/* Table settings */}
+					<Popover>
+						<PopoverTrigger asChild>
+							<Button
+								variant="outline"
+								size={config.size === 'sm' ? 'sm' : 'default'}
+								leftIcon={<Settings className="h-4 w-4" />}
+								hideIcon={false}
+								className={`${getButtonSizeClass(config.size)}`}
+							/>
+						</PopoverTrigger>
+						<PopoverContent align="end" className="w-fit">
+							<div className="grid gap-4">
+								<div className="space-y-2">
+									<h4 className="font-medium leading-none">{t('dataTable.tableSettings')}</h4>
+									<p className="text-muted-foreground text-sm">
+										{t('dataTable.tableSettingsDescription')}
+									</p>
+								</div>
+								<div className="grid gap-2">
+									{config.enableColumnResizing && resetColumnSizing && (
+										<Button
+											variant="outline"
+											size="sm"
+											onClick={resetColumnSizing}
+											className="justify-start"
+										>
+											<Undo2 className="mr-2 h-4 w-4" />
+											{t('dataTable.resetColumnSizes')}
+										</Button>
+									)}
+									{resetColumnOrder && (
+										<Button
+											variant="outline"
+											size="sm"
+											onClick={resetColumnOrder}
+											className="justify-start"
+										>
+											<Undo2 className="mr-2 h-4 w-4" />
+											{t('dataTable.resetColumnOrder')}
+										</Button>
+									)}
+								</div>
+							</div>
+						</PopoverContent>
+					</Popover>
+				</div>
 			</div>
 
-			<div className="flex items-center gap-2">
-				{/* Custom toolbar component */}
-				{customToolbarComponent}
-
-				{config.enableExport && getAllItems && (
-					<DataTableExport<TData>
-						table={table}
-						data={getAllItems()}
-						selectedData={[]}
-						getSelectedItems={getSelectedItems}
-						entityName={entityName}
-						columnMapping={columnMapping}
-						columnWidths={columnWidths}
-						headers={headers}
-						size={config.size}
-					/>
-				)}
-
-				{/* Column visibility */}
-				{config.enableColumnVisibility && <DataTableViewOptions table={table} size={config.size} />}
-
-				{/* Table settings */}
-				<Popover>
-					<PopoverTrigger asChild>
-						<Button
-							variant="outline"
-							size={config.size === 'sm' ? 'sm' : 'default'}
-							className={`ml-auto hidden lg:flex ${getButtonSizeClass(config.size)}`}
-						>
-							<Settings className="mr-2 h-4 w-4" />
-							{t('dataTable.settings')}
-						</Button>
-					</PopoverTrigger>
-					<PopoverContent align="end" className="w-fit">
-						<div className="grid gap-4">
-							<div className="space-y-2">
-								<h4 className="font-medium leading-none">{t('dataTable.tableSettings')}</h4>
-								<p className="text-muted-foreground text-sm">
-									{t('dataTable.tableSettingsDescription')}
-								</p>
-							</div>
-							<div className="grid gap-2">
-								{config.enableColumnResizing && resetColumnSizing && (
-									<Button
-										variant="outline"
-										size="sm"
-										onClick={resetColumnSizing}
-										className="justify-start"
-									>
-										<Undo2 className="mr-2 h-4 w-4" />
-										{t('dataTable.resetColumnSizes')}
-									</Button>
-								)}
-								{resetColumnOrder && (
-									<Button
-										variant="outline"
-										size="sm"
-										onClick={resetColumnOrder}
-										className="justify-start"
-									>
-										<Undo2 className="mr-2 h-4 w-4" />
-										{t('dataTable.resetColumnOrder')}
-									</Button>
-								)}
-							</div>
+			{/* Mobile layout */}
+			<div className="flex flex-col gap-3 lg:hidden">
+				{/* First row - Search and table controls */}
+				<div className="flex items-center gap-2">
+					{config.enableSearch && (
+						<div className="relative flex-1">
+							<Search className="absolute top-2.5 left-2 h-4 w-4 text-muted-foreground" />
+							<Input
+								placeholder={t('dataTable.searchPlaceholder')}
+								value={
+									config.manualSearching
+										? (searchValue ?? '')
+										: ((table.getState().globalFilter as string) ?? '')
+								}
+								onChange={event => {
+									if (config.manualSearching && onSearchChange) {
+										onSearchChange(event.target.value);
+									} else {
+										table.setGlobalFilter(event.target.value);
+									}
+								}}
+								className="w-full rounded-md border-2 border-[var(--control-border)] bg-background/80 pl-8 text-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus:border-blue-500"
+							/>
+							{((config.manualSearching && searchValue) ||
+								(!config.manualSearching && table.getState().globalFilter)) && (
+								<Button
+									variant="ghost"
+									onClick={() => {
+										if (config.manualSearching && onSearchChange) {
+											onSearchChange('');
+										} else {
+											table.setGlobalFilter('');
+										}
+									}}
+									className="absolute top-0 right-0 h-full px-3 py-0 hover:bg-transparent"
+								>
+									<X className="h-4 w-4" />
+								</Button>
+							)}
 						</div>
-					</PopoverContent>
-				</Popover>
+					)}
+
+					{/* Clear filters */}
+					{isFiltered && (
+						<Button
+							variant="ghost"
+							onClick={() => {
+								table.resetColumnFilters();
+								if (config.manualSearching && onSearchChange) {
+									onSearchChange('');
+								} else {
+									table.setGlobalFilter('');
+								}
+							}}
+							leftIcon={<X className="h-4 w-4" />}
+							hideIcon={false}
+							className="h-8 px-2"
+						/>
+					)}
+
+					{/* Table controls */}
+					<div className="flex items-center gap-2">
+						{config.enableExport && getAllItems && (
+							<DataTableExport<TData>
+								table={table}
+								data={getAllItems()}
+								selectedData={[]}
+								getSelectedItems={getSelectedItems}
+								entityName={entityName}
+								columnMapping={columnMapping}
+								columnWidths={columnWidths}
+								headers={headers}
+								size={config.size}
+							/>
+						)}
+
+						{/* Column visibility */}
+						{config.enableColumnVisibility && <DataTableViewOptions table={table} size={config.size} />}
+
+						{/* Table settings */}
+						<Popover>
+							<PopoverTrigger asChild>
+								<Button
+									variant="outline"
+									size={config.size === 'sm' ? 'sm' : 'default'}
+									leftIcon={<Settings className="h-4 w-4" />}
+									hideIcon={false}
+									className={`${getButtonSizeClass(config.size)}`}
+								/>
+							</PopoverTrigger>
+							<PopoverContent align="end" className="w-fit">
+								<div className="grid gap-4">
+									<div className="space-y-2">
+										<h4 className="font-medium leading-none">{t('dataTable.tableSettings')}</h4>
+										<p className="text-muted-foreground text-sm">
+											{t('dataTable.tableSettingsDescription')}
+										</p>
+									</div>
+									<div className="grid gap-2">
+										{config.enableColumnResizing && resetColumnSizing && (
+											<Button
+												variant="outline"
+												size="sm"
+												onClick={resetColumnSizing}
+												className="justify-start"
+											>
+												<Undo2 className="mr-2 h-4 w-4" />
+												{t('dataTable.resetColumnSizes')}
+											</Button>
+										)}
+										{resetColumnOrder && (
+											<Button
+												variant="outline"
+												size="sm"
+												onClick={resetColumnOrder}
+												className="justify-start"
+											>
+												<Undo2 className="mr-2 h-4 w-4" />
+												{t('dataTable.resetColumnOrder')}
+											</Button>
+										)}
+									</div>
+								</div>
+							</PopoverContent>
+						</Popover>
+					</div>
+				</div>
+
+				{/* Second row - Custom toolbar component (full width) */}
+				{customToolbarComponent && (
+					<div className="w-full">
+						{customToolbarComponent}
+					</div>
+				)}
 			</div>
 		</div>
 	);

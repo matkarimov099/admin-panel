@@ -296,19 +296,13 @@ export function DataTableExport<TData>({
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button variant="outline" size={size} disabled={isLoading}>
-					{isLoading ? (
-						<>
-							<Loader2 className="mr-2 h-4 w-4 animate-spin" />
-							{t('dataTable.exporting')}
-						</>
-					) : (
-						<>
-							<DownloadIcon className="mr-2 h-4 w-4" />
-							{t('dataTable.export')}
-							{hasSelection && <span className="ml-1">({selectedData?.length})</span>}
-						</>
-					)}
+				<Button
+					variant="outline"
+					size={size}
+					disabled={isLoading}
+					leftIcon={isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <DownloadIcon className="h-4 w-4" />}
+					hideIcon={false}
+				>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">

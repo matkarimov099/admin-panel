@@ -27,7 +27,11 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-export function AddUser() {
+interface AddUserProps {
+	className?: string;
+}
+
+export function AddUser({ className }: AddUserProps = {}) {
 	const { t } = useI18n('users');
 	const [open, setOpen] = useState(false);
 
@@ -62,7 +66,7 @@ export function AddUser() {
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button leftIcon={<PlusIcon className="mr-2 h-4 w-4" />} size="default">
+				<Button leftIcon={<PlusIcon className="mr-2 h-4 w-4" />} size="default" className={className}>
 					Add User
 				</Button>
 			</DialogTrigger>

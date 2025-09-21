@@ -41,11 +41,45 @@ const ToolbarOptions = ({
 		allSelectedUserIds.length > 0 ? allSelectedUserIds : selectedUsers.map(user => user.id);
 
 	return (
-		<div className="w-full space-y-2 md:space-y-3 lg:space-y-0">
-			{/* Mobile: All elements in single column */}
-			<div className="flex flex-col space-y-2 lg:hidden">
+		<>
+			{/* Desktop layout */}
+			<div className="hidden lg:flex lg:items-center lg:gap-2">
 				<AddUser />
-				<div className="grid grid-cols-1 gap-2">
+				<CalendarDatePicker
+					date={dateRange}
+					onDateSelect={range => {
+						console.log('Selected date range:', range);
+						if (range.from && range.to) {
+							setDateRange(range as DateRange);
+						} else {
+							// Clear selection
+							setDateRange({ from: undefined, to: undefined });
+						}
+					}}
+					placeholder={t('calendar.selectDateRange', 'Select date range')}
+					variant="outline"
+				/>
+				<DatePicker
+					date={singleDate}
+					onDateSelect={date => {
+						console.log('Selected single date:', date);
+						setSingleDate(date);
+					}}
+					placeholder={t('calendar.selectDate', 'Select date')}
+					variant="outline"
+				/>
+				{selectionCount > 0 && (
+					<Button variant="outline" size="default" onClick={() => setDeleteDialogOpen(true)}>
+						<TrashIcon className="mr-2 size-4" aria-hidden="true" />
+						Delete ({selectionCount})
+					</Button>
+				)}
+			</div>
+
+			{/* Mobile layout - Full width below main toolbar controls */}
+			<div className="flex flex-col gap-2 lg:hidden">
+				<AddUser className="w-full" />
+				<div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
 					<CalendarDatePicker
 						date={dateRange}
 						onDateSelect={range => {
@@ -85,42 +119,6 @@ const ToolbarOptions = ({
 				)}
 			</div>
 
-			{/* Desktop: All elements in single row */}
-			<div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-4">
-				<div className="flex items-center gap-2">
-					<AddUser />
-					<CalendarDatePicker
-						date={dateRange}
-						onDateSelect={range => {
-							console.log('Selected date range:', range);
-							if (range.from && range.to) {
-								setDateRange(range as DateRange);
-							} else {
-								// Clear selection
-								setDateRange({ from: undefined, to: undefined });
-							}
-						}}
-						placeholder={t('calendar.selectDateRange', 'Select date range')}
-						variant="outline"
-					/>
-					<DatePicker
-						date={singleDate}
-						onDateSelect={date => {
-							console.log('Selected single date:', date);
-							setSingleDate(date);
-						}}
-						placeholder={t('calendar.selectDate', 'Select date')}
-						variant="outline"
-					/>
-				</div>
-				{selectionCount > 0 && (
-					<Button variant="outline" size="default" onClick={() => setDeleteDialogOpen(true)}>
-						<TrashIcon className="mr-2 size-4" aria-hidden="true" />
-						Delete ({selectionCount})
-					</Button>
-				)}
-			</div>
-
 			{selectionCount > 0 && (
 				<BulkDeleteUser
 					open={deleteDialogOpen}
@@ -131,7 +129,7 @@ const ToolbarOptions = ({
 					resetSelection={resetSelection}
 				/>
 			)}
-		</div>
+		</>
 	);
 };
 

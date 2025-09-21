@@ -169,11 +169,10 @@ export function DataTableViewOptions<TData>({
 					aria-label={t('dataTable.view')}
 					variant="outline"
 					size={size}
-					className="ml-auto hidden lg:flex"
-				>
-					<Settings2 className="mr-2 h-4 w-4" />
-					{t('dataTable.view')}
-				</Button>
+					leftIcon={<Settings2 className="h-4 w-4" />}
+					hideIcon={false}
+					className="ml-auto"
+				/>
 			</PopoverTrigger>
 			<PopoverContent align="end" className="w-fit p-0">
 				<Command className="bg-transparent">

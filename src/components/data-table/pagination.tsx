@@ -48,8 +48,9 @@ export function DataTablePagination<TData>({
 	return (
 		<div className="flex w-full flex-col items-center justify-between gap-4 overflow-auto rounded-md border border-border/50 bg-background/90 px-4 py-3 shadow-sm saturate-[150%] backdrop-blur-md sm:flex-row sm:gap-8">
 			<div className="flex-1 text-muted-foreground text-sm">
-				{totalSelectedItems}{' '}
-				{t('dataTable.pagination.rowsSelected').replace('{total}', totalItems.toString())}
+				{t('dataTable.pagination.rowsSelected')
+					.replace('{total}', totalItems.toString())
+					.replace('{selected}', totalSelectedItems.toString())}
 			</div>
 			<div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8">
 				<div className="flex items-center space-x-2">
@@ -78,7 +79,7 @@ export function DataTablePagination<TData>({
 							className="w-[70px] cursor-pointer"
 							size={selectSize === 'sm' ? 'sm' : 'md'}
 						>
-							<SelectValue placeholder={table.getState().pagination.pageSize} />
+							<SelectValue />
 						</SelectTrigger>
 						<SelectContent side="top" className="cursor-pointer">
 							{pageSizeOptions.map(pageSize => (
