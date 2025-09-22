@@ -21,19 +21,16 @@ const languageOptions = [
 	{
 		code: 'uz' as Locale,
 		name: "O'zbekcha",
-		description: "O'zbek tili",
 		flag: uzFlag,
 	},
 	{
 		code: 'ru' as Locale,
 		name: 'Русский',
-		description: 'Русский язык',
 		flag: ruFlag,
 	},
 	{
 		code: 'en' as Locale,
 		name: 'English',
-		description: 'English language',
 		flag: enFlag,
 	},
 ];
@@ -78,7 +75,7 @@ export function LanguageToggle() {
 						<span className="sr-only">Change language</span>
 					</Button>
 				</DropdownMenuTrigger>
-				<DropdownMenuContent align="end" className="w-64">
+				<DropdownMenuContent align="end" className="w-48">
 					{languageOptions.map(option => {
 						const isSelected = locale === option.code;
 
@@ -87,23 +84,16 @@ export function LanguageToggle() {
 								key={option.code}
 								onClick={() => handleLanguageChange(option.code)}
 								className={cn(
-									'group relative mx-1 my-0.5 flex cursor-pointer items-center gap-3 px-3 py-3 transition-colors duration-200 hover:bg-muted/80',
+									'group relative mx-1 my-0.5 flex cursor-pointer items-center gap-3 px-3 py-2 transition-colors duration-200 hover:bg-muted/80',
 									isSelected && 'bg-[var(--system-blue)]/10 text-foreground'
 								)}
 							>
 								<div className="flex flex-1 items-center gap-3">
-									<div className="relative flex items-center justify-center overflow-hidden">
-										<img src={option.flag} alt={option.name} className="relative z-10 h-7 w-7" />
-									</div>
-									<div className="flex flex-col">
-										<span className="font-medium text-sm">{option.name}</span>
-										<span className="text-muted-foreground text-xs">{option.description}</span>
-									</div>
+									<img src={option.flag} alt={option.name} className="h-5 w-5" />
+									<span className="font-medium text-sm">{option.name}</span>
 								</div>
 								{isSelected && (
-									<div className="flex items-center gap-1">
-										<CheckIcon className="h-6 w-6" />
-									</div>
+									<CheckIcon className="h-4 w-4" />
 								)}
 							</DropdownMenuItem>
 						);
