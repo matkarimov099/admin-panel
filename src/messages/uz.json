@@ -48,10 +48,7 @@
 		"toggleTheme": "Tema almashtirish",
 		"light": "Yorug'",
 		"dark": "Qorong'i",
-		"system": "Tizim",
-		"lightDescription": "Toza va yorqin",
-		"darkDescription": "Ko'zga qulay",
-		"systemDescription": "Qurilmaga moslashadi"
+		"system": "Tizim"
 	},
 	"calendar": {
 		"selectDate": "Sanani tanlang",

@@ -474,7 +474,7 @@ export function DataTable<TData>({
 	}, [table, tableId]);
 
 	return (
-		<div className="space-y-4">
+		<div className="flex flex-col h-full space-y-4">
 			{/* Toolbar */}
 			{tableConfig.enableToolbar && (
 				<DataTableToolbar
@@ -507,7 +507,7 @@ export function DataTable<TData>({
 
 			<div
 				ref={tableContainerRef}
-				className="table-container overflow-y-auto rounded-lg bg-card shadow-sm saturate-[150%] backdrop-blur-[10px]"
+				className="flex-1 table-container overflow-y-auto rounded-lg bg-card shadow-sm saturate-[150%] backdrop-blur-[10px]"
 				aria-label="Data table"
 				onKeyDown={tableConfig.enableKeyboardNavigation ? handleKeyDown : undefined}
 			>

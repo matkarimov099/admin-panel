@@ -98,7 +98,7 @@ export const DefaultLayout = () => {
 										ease: [0.2, 0.9, 0.25, 1], // smooth cubic-bezier
 									}}
 								>
-									<main className="flex flex-1 flex-col overflow-y-auto max-h-[calc(100vh-5rem)] p-4 shadow-md rounded-lg bg-content">
+									<main className="flex flex-1 flex-col overflow-y-auto max-h-[calc(100vh-5rem)] sm:h-[calc(100vh-6rem)] p-4 shadow-md rounded-lg bg-content">
 										<Outlet />
 									</main>
 								</motion.div>

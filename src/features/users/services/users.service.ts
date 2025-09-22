@@ -56,10 +56,12 @@ export async function getUsers(filter: UserFilter) {
 
 	// Apply pagination
 	const page = filter.page || 1;
-	const per_page = filter.per_page || 10;
+	const per_page = filter.limit || filter.per_page || 10;
+	console.log('Pagination Debug:', { page, per_page, filter });
 	const startIndex = (page - 1) * per_page;
 	const endIndex = startIndex + per_page;
 	const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
+	console.log('Paginated Users:', { total: filteredUsers.length, returned: paginatedUsers.length });
 
 	// Return mock response matching API structure
 	return {

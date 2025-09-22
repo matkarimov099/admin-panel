@@ -59,10 +59,7 @@
 		"toggleTheme": "Toggle theme",
 		"light": "Light",
 		"dark": "Dark",
-		"system": "System",
-		"lightDescription": "Clean and bright",
-		"darkDescription": "Easy on the eyes",
-		"systemDescription": "Adapts to device"
+		"system": "System"
 	},
 	"calendar": {
 		"selectDate": "Select a date",
