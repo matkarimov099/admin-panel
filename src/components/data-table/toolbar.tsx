@@ -1,8 +1,8 @@
 import type { Table } from '@tanstack/react-table';
-import { Search, Settings, Undo2, X } from 'lucide-react';
+import { Settings, Undo2, X } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { SearchInput } from '@/components/custom/search-input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useI18n } from '@/hooks/use-i18n';
 import type { ReactNode } from 'react';
@@ -68,41 +68,21 @@ export function DataTableToolbar<TData>({
 				{/* Left side - Search */}
 				<div className="flex flex-1 items-center gap-2">
 					{config.enableSearch && (
-						<div className="relative">
-							<Search className="absolute top-2.5 left-2 h-4 w-4 text-muted-foreground" />
-							<Input
-								placeholder={t('dataTable.searchPlaceholder')}
-								value={
-									config.manualSearching
-										? (searchValue ?? '')
-										: ((table.getState().globalFilter as string) ?? '')
+						<SearchInput
+							placeholder={t('dataTable.searchPlaceholder')}
+							value={
+								config.manualSearching
+									? (searchValue ?? '')
+									: ((table.getState().globalFilter as string) ?? '')
+							}
+							onValueChange={value => {
+								if (config.manualSearching && onSearchChange) {
+									onSearchChange(value);
+								} else {
+									table.setGlobalFilter(value);
 								}
-								onChange={event => {
-									if (config.manualSearching && onSearchChange) {
-										onSearchChange(event.target.value);
-									} else {
-										table.setGlobalFilter(event.target.value);
-									}
-								}}
-								className="w-[300px] rounded-md border-2 border-[var(--control-border)] bg-background/80 pl-8 text-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus:border-blue-500"
-							/>
-							{((config.manualSearching && searchValue) ||
-								(!config.manualSearching && table.getState().globalFilter)) && (
-								<Button
-									variant="ghost"
-									onClick={() => {
-										if (config.manualSearching && onSearchChange) {
-											onSearchChange('');
-										} else {
-											table.setGlobalFilter('');
-										}
-									}}
-									className="absolute top-0 right-0 h-full px-3 py-0 hover:bg-transparent"
-								>
-									<X className="h-4 w-4" />
-								</Button>
-							)}
-						</div>
+							}}
+						/>
 					)}
 					{/* Clear filters */}
 					{isFiltered && (
@@ -199,41 +179,23 @@ export function DataTableToolbar<TData>({
 				{/* First row - Search and table controls */}
 				<div className="flex items-center gap-2">
 					{config.enableSearch && (
-						<div className="relative flex-1">
-							<Search className="absolute top-2.5 left-2 h-4 w-4 text-muted-foreground" />
-							<Input
-								placeholder={t('dataTable.searchPlaceholder')}
-								value={
-									config.manualSearching
-										? (searchValue ?? '')
-										: ((table.getState().globalFilter as string) ?? '')
+						<SearchInput
+							placeholder={t('dataTable.searchPlaceholder')}
+							value={
+								config.manualSearching
+									? (searchValue ?? '')
+									: ((table.getState().globalFilter as string) ?? '')
+							}
+							onValueChange={value => {
+								if (config.manualSearching && onSearchChange) {
+									onSearchChange(value);
+								} else {
+									table.setGlobalFilter(value);
 								}
-								onChange={event => {
-									if (config.manualSearching && onSearchChange) {
-										onSearchChange(event.target.value);
-									} else {
-										table.setGlobalFilter(event.target.value);
-									}
-								}}
-								className="w-full rounded-md border-2 border-[var(--control-border)] bg-background/80 pl-8 text-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus:border-blue-500"
-							/>
-							{((config.manualSearching && searchValue) ||
-								(!config.manualSearching && table.getState().globalFilter)) && (
-								<Button
-									variant="ghost"
-									onClick={() => {
-										if (config.manualSearching && onSearchChange) {
-											onSearchChange('');
-										} else {
-											table.setGlobalFilter('');
-										}
-									}}
-									className="absolute top-0 right-0 h-full px-3 py-0 hover:bg-transparent"
-								>
-									<X className="h-4 w-4" />
-								</Button>
-							)}
-						</div>
+							}}
+							className="flex-1"
+							inputClassName="w-full"
+						/>
 					)}
 
 					{/* Clear filters */}

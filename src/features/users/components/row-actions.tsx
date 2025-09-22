@@ -10,7 +10,7 @@ import {
 import type { Row, Table as TanstackTable } from '@tanstack/react-table';
 import * as React from 'react';
 
-import { EllipsisIcon } from 'lucide-react';
+import { EllipsisIcon, EditIcon, CopyIcon, HeartIcon, TrashIcon } from 'lucide-react';
 import { DeleteUser } from './actions/DeleteUser';
 
 interface DataTableRowActionsProps<TData> {
@@ -35,11 +35,24 @@ export function DataTableRowActions<TData>({ row, table }: DataTableRowActionsPr
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end" className="w-[160px]">
-					<DropdownMenuItem onClick={() => console.log(row)}>Edit</DropdownMenuItem>
-					<DropdownMenuItem>Make a copy</DropdownMenuItem>
-					<DropdownMenuItem>Favorite</DropdownMenuItem>
+					<DropdownMenuItem onClick={() => console.log(row)} className="flex items-center gap-2">
+						<EditIcon className="h-4 w-4" />
+						Edit
+					</DropdownMenuItem>
+					<DropdownMenuItem className="flex items-center gap-2">
+						<CopyIcon className="h-4 w-4" />
+						Make a copy
+					</DropdownMenuItem>
+					<DropdownMenuItem className="flex items-center gap-2">
+						<HeartIcon className="h-4 w-4" />
+						Favorite
+					</DropdownMenuItem>
 					<DropdownMenuSeparator />
-					<DropdownMenuItem onClick={() => setDeleteDialogOpen(true)}>
+					<DropdownMenuItem
+						onClick={() => setDeleteDialogOpen(true)}
+						className="flex items-center gap-2 text-destructive focus:text-destructive"
+					>
+						<TrashIcon className="h-4 w-4" />
 						Delete
 						<DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
 					</DropdownMenuItem>

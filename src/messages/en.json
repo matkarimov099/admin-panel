@@ -162,7 +162,7 @@
 			"goToPreviousPage": "Go to previous page",
 			"goToNextPage": "Go to next page",
 			"goToLastPage": "Go to last page",
-			"rowsSelected": "of {total} row(s) selected"
+			"rowsSelected": "{selected} of {total} row(s) selected"
 		},
 		"noResults": "No results.",
 		"loading": "Loading...",

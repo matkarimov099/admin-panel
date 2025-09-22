@@ -162,7 +162,7 @@
 			"goToPreviousPage": "Перейти на предыдущую страницу",
 			"goToNextPage": "Перейти на следующую страницу",
 			"goToLastPage": "Перейти на последнюю страницу",
-			"rowsSelected": "из {total} строк(и) выбрано"
+			"rowsSelected": "выбрано {selected} из {total} строк"
 		},
 		"noResults": "Нет результатов.",
 		"loading": "Загрузка...",

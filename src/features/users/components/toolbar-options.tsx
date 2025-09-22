@@ -33,7 +33,7 @@ const ToolbarOptions = ({
 	});
 	const [singleDate, setSingleDate] = useState<Date | undefined>(new Date());
 
-	// Use total selected count if available, otherwise fall back to current page selection
+	// Use total selected count if available, otherwise fall back to the current page selection
 	const selectionCount = totalSelectedCount || selectedUsers.length;
 
 	// Determine which IDs to use for operations - prefer all selected IDs if available
